@@ -1,0 +1,12 @@
+# git ignore file
+ASPEDB.Utils\bin\Debug*/
+ASPEDB.Utils\obj\Debug*/
+
+ASPEDB.Test\bin\Debug*/
+ASPEDB.Test\obj\Debug*/
+
+ASPEDB.DTO\bin\Debug*/
+ASPEDB.DTO\obj\Debug*/
+
+ASPEDB.EncryptionModule\bin\Debug*/
+ASPEDB.EncryptionModule\obj\Debug*/

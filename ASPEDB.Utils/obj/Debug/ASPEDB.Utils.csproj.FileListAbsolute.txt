@@ -1,0 +1,7 @@
+D:\Disertatie\ASPEDB.Utils\bin\Debug\ASPEDB.Utils.dll
+D:\Disertatie\ASPEDB.Utils\bin\Debug\ASPEDB.Utils.pdb
+D:\Disertatie\ASPEDB.Utils\bin\Debug\ASPEDB.DTO.dll
+D:\Disertatie\ASPEDB.Utils\bin\Debug\ASPEDB.DTO.pdb
+D:\Disertatie\ASPEDB.Utils\obj\Debug\ASPEDB.Utils.csprojResolveAssemblyReference.cache
+D:\Disertatie\ASPEDB.Utils\obj\Debug\ASPEDB.Utils.dll
+D:\Disertatie\ASPEDB.Utils\obj\Debug\ASPEDB.Utils.pdb

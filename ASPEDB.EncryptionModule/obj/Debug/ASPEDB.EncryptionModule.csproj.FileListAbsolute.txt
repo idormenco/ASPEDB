@@ -1,0 +1,9 @@
+D:\Disertatie\ASPEDB.EncryptionModule\bin\Debug\ASPEDB.EncryptionModule.dll
+D:\Disertatie\ASPEDB.EncryptionModule\bin\Debug\ASPEDB.EncryptionModule.pdb
+D:\Disertatie\ASPEDB.EncryptionModule\bin\Debug\ASPEDB.DTO.dll
+D:\Disertatie\ASPEDB.EncryptionModule\bin\Debug\ASPEDB.Utils.dll
+D:\Disertatie\ASPEDB.EncryptionModule\bin\Debug\ASPEDB.DTO.pdb
+D:\Disertatie\ASPEDB.EncryptionModule\bin\Debug\ASPEDB.Utils.pdb
+D:\Disertatie\ASPEDB.EncryptionModule\obj\Debug\ASPEDB.EncryptionModule.csprojResolveAssemblyReference.cache
+D:\Disertatie\ASPEDB.EncryptionModule\obj\Debug\ASPEDB.EncryptionModule.dll
+D:\Disertatie\ASPEDB.EncryptionModule\obj\Debug\ASPEDB.EncryptionModule.pdb

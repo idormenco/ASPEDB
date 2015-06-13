@@ -1,0 +1,12 @@
+D:\Disertatie\ASPEDB.Test\bin\Debug\ASPEDB.Test.exe.config
+D:\Disertatie\ASPEDB.Test\bin\Debug\ASPEDB.Test.exe
+D:\Disertatie\ASPEDB.Test\bin\Debug\ASPEDB.Test.pdb
+D:\Disertatie\ASPEDB.Test\bin\Debug\ASPEDB.DTO.dll
+D:\Disertatie\ASPEDB.Test\bin\Debug\ASPEDB.EncryptionModule.dll
+D:\Disertatie\ASPEDB.Test\bin\Debug\ASPEDB.Utils.dll
+D:\Disertatie\ASPEDB.Test\bin\Debug\ASPEDB.DTO.pdb
+D:\Disertatie\ASPEDB.Test\bin\Debug\ASPEDB.EncryptionModule.pdb
+D:\Disertatie\ASPEDB.Test\bin\Debug\ASPEDB.Utils.pdb
+D:\Disertatie\ASPEDB.Test\obj\Debug\ASPEDB.Test.csprojResolveAssemblyReference.cache
+D:\Disertatie\ASPEDB.Test\obj\Debug\ASPEDB.Test.exe
+D:\Disertatie\ASPEDB.Test\obj\Debug\ASPEDB.Test.pdb
