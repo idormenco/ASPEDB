@@ -29,7 +29,7 @@ namespace ASPEDB.EncryptionModule
 
         public EncryptedPoint Enc(Point point)
         {
-            Random r = new Random();
+            Random rand = new Random();
             if (this.sk == null) throw new Exception("No secret key sk");
             EncryptedPoint encPoint = new EncryptedPoint(sk.dPrim);
             decimal[] pTilda = new decimal[sk.dPrim];
@@ -44,7 +44,7 @@ namespace ASPEDB.EncryptionModule
             {
                 if (sk.s[i] == '0')
                 {
-                    pTilda[sk.d + 1 + i] = r.Next(255);
+                    pTilda[sk.d + 1 + i] = rand.Next(255);
                     if (k != i)
                     {
                         sum += sk.Wds[sk.d + 1 + (i + 1)] * pTilda[sk.d + 1 + i];
@@ -62,13 +62,13 @@ namespace ASPEDB.EncryptionModule
             {
                 if (sk.sw[i] == '1')
                 {
-                    encPoint.pa[i] = pTilda[i] + sk.R[i];
-                    encPoint.pb[i] = pTilda[i] - sk.R[i];
+                    encPoint.pa[i] = pTilda[i] + rand.Next(255);//sk.R[i];
+                    encPoint.pb[i] = pTilda[i] - rand.Next(255); //sk.R[i];
                 }
                 else
                 {
-                    encPoint.pa[i] = pTilda[i] - sk.R[i];
-                    encPoint.pb[i] = pTilda[i] + sk.R[i];
+                    encPoint.pa[i] = pTilda[i] - rand.Next(255); //sk.R[i];
+                    encPoint.pb[i] = pTilda[i] + rand.Next(255); //sk.R[i];
                 }
             }
             encPoint.pa = sk.M1.Transpose().Multiply(encPoint.pa);
@@ -110,13 +110,13 @@ namespace ASPEDB.EncryptionModule
             {
                 if (sk.sw[i] == '0')
                 {
-                    encQuery.qa[i] = qTilda[i] + sk.R[i];
-                    encQuery.qb[i] = qTilda[i] - sk.R[i];
+                    encQuery.qa[i] = qTilda[i] + rand.Next(255);//sk.R[i];
+                    encQuery.qb[i] = qTilda[i] - rand.Next(255);//sk.R[i];
                 }
                 else
                 {
-                    encQuery.qa[i] = qTilda[i] - sk.R[i];
-                    encQuery.qb[i] = qTilda[i] + sk.R[i];
+                    encQuery.qa[i] = qTilda[i] - rand.Next(255);//sk.R[i];
+                    encQuery.qb[i] = qTilda[i] + rand.Next(255);//sk.R[i];
                 }
             }
             encQuery.qa = sk.M1.Inverse().Multiply(encQuery.qa);

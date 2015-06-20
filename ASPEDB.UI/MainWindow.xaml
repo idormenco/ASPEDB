@@ -1,0 +1,10 @@
+﻿<Window x:Class="ASPEDB.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525"
+        DataContext="{Binding Main, Source={StaticResource Locator}}"
+        >
+    <Grid>
+        <Button Command="{Binding ClickCommand}" Content="click" Width="100" Height="100" />
+    </Grid>
+</Window>

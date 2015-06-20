@@ -59,7 +59,7 @@ namespace ASPEDB.Test
             var ep1 = aspe.Enc(point);
             var eq = aspe.Que(query);
             var ep2 = aspe.Enc(new Point(p2));
-            aspe.Dec(ep2).Print();
+            Console.WriteLine( aspe.Dis(ep1, ep2, eq));
             Console.ReadLine();
         }
     }
