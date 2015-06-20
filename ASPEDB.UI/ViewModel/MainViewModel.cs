@@ -28,9 +28,11 @@ namespace ASPEDB.UI.ViewModel
         public MainViewModel()
         {
             dboc = new DBOperationsClient();
+            
             ClickCommand = new RelayCommand(() =>
             {
-                MessageBox.Show(dboc.Hello());
+                EncryptedPoint e = new EncryptedPoint();
+                dboc.Insert(e);
             });
             ////if (IsInDesignMode)
             ////{

@@ -120,6 +120,9 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\DBOperationsService\ASPEDB.UI.DBOperationsService.EncryptedPoint.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\DBOperationsService\DBOperations.wsdl" />
     <None Include="Service References\DBOperationsService\DBOperations.xsd">
       <SubType>Designer</SubType>
@@ -141,6 +144,15 @@
     <None Include="Service References\DBOperationsService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\DBOperationsService\DBOperations2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DBOperationsService\DBOperations21.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DBOperationsService\DBOperations22.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\DBOperationsService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

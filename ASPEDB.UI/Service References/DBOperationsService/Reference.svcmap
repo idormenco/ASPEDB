@@ -22,9 +22,12 @@
     <MetadataSource Address="http://localhost:20938/ASPEDB.DBServiceHost/DBOperations.svc?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
+    <MetadataFile FileName="DBOperations2.xsd" MetadataType="Schema" ID="3929ec1a-98ab-4cc1-8fe7-f332afa5e4d3" SourceId="1" SourceUrl="http://localhost:20938/ASPEDB.DBServiceHost/DBOperations.svc?xsd=xsd3" />
     <MetadataFile FileName="DBOperations.xsd" MetadataType="Schema" ID="3a46bae7-8daa-4e37-a480-df38e3afa5f0" SourceId="1" SourceUrl="http://localhost:20938/ASPEDB.DBServiceHost/DBOperations.svc?xsd=xsd0" />
     <MetadataFile FileName="DBOperations.wsdl" MetadataType="Wsdl" ID="85114faf-eef8-4f7d-a38c-d94b89ba8487" SourceId="1" SourceUrl="http://localhost:20938/ASPEDB.DBServiceHost/DBOperations.svc?wsdl" />
     <MetadataFile FileName="DBOperations1.xsd" MetadataType="Schema" ID="0c5e7585-c8ef-4e7c-89a9-a128c5e54468" SourceId="1" SourceUrl="http://localhost:20938/ASPEDB.DBServiceHost/DBOperations.svc?xsd=xsd1" />
+    <MetadataFile FileName="DBOperations21.xsd" MetadataType="Schema" ID="aa0968f1-d766-4ee3-b165-7202c189b25d" SourceId="1" SourceUrl="http://localhost:20938/ASPEDB.DBServiceHost/DBOperations.svc?xsd=xsd4" />
+    <MetadataFile FileName="DBOperations22.xsd" MetadataType="Schema" ID="e0802d52-94be-4a4c-b084-7b840a6b0fe0" SourceId="1" SourceUrl="http://localhost:20938/ASPEDB.DBServiceHost/DBOperations.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

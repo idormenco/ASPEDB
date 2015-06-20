@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ASPEDB.DTO" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ASPEDB.DTO" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:20938/ASPEDB.DBServiceHost/DBOperations.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ArrayOfEncryptedPoint">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EncryptedPoint" nillable="true" type="tns:EncryptedPoint" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEncryptedPoint" nillable="true" type="tns:ArrayOfEncryptedPoint" />
+  <xs:complexType name="EncryptedPoint">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="pa" nillable="true" type="q1:ArrayOfdecimal" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="pb" nillable="true" type="q2:ArrayOfdecimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EncryptedPoint" nillable="true" type="tns:EncryptedPoint" />
+</xs:schema>
