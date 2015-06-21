@@ -46,6 +46,18 @@ Copyright (C) Microsoft Corporation. All rights reserved.
       <Project>{09A9C02C-6434-4B85-82F9-DB4163699A69}</Project>
       <Name>ASPEDB.DBService</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ASPEDB.DTO\ASPEDB.DTO.csproj">
+      <Project>{57C6B938-C19D-4155-98C6-03723772D5DC}</Project>
+      <Name>ASPEDB.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASPEDB.EncryptionModule\ASPEDB.EncryptionModule.csproj">
+      <Project>{4884711B-3B5F-4F2C-A7BE-04A6E32D449B}</Project>
+      <Name>ASPEDB.EncryptionModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASPEDB.Utils\ASPEDB.Utils.csproj">
+      <Project>{AD101BCF-8A4C-4BAB-AB4D-15DC1DC48C92}</Project>
+      <Name>ASPEDB.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(_WebPublishTargetsPath)\Web\Microsoft.WebSite.Publishing.targets" />
 </Project>

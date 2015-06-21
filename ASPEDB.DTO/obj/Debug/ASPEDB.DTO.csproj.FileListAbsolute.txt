@@ -2,4 +2,3 @@ D:\Disertatie\ASPEDB.DTO\bin\Debug\ASPEDB.DTO.dll
 D:\Disertatie\ASPEDB.DTO\bin\Debug\ASPEDB.DTO.pdb
 D:\Disertatie\ASPEDB.DTO\obj\Debug\ASPEDB.DTO.dll
 D:\Disertatie\ASPEDB.DTO\obj\Debug\ASPEDB.DTO.pdb
-D:\Disertatie\ASPEDB.DTO\obj\Debug\ASPEDB.DTO.csprojResolveAssemblyReference.cache

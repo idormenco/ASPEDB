@@ -32,7 +32,7 @@ namespace ASPEDB.UI.ViewModel
             ClickCommand = new RelayCommand(() =>
             {
                 EncryptedPoint e = new EncryptedPoint();
-                dboc.Insert(e);
+                MessageBox.Show(dboc.Hello());
             });
             ////if (IsInDesignMode)
             ////{
