@@ -2,6 +2,7 @@
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:20938/ASPEDB.DBServiceHost/DBOperations.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ASPEDB.DTO.Query" />
   <xs:import schemaLocation="http://localhost:20938/ASPEDB.DBServiceHost/DBOperations.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/ASPEDB.DTO" />
+  <xs:import schemaLocation="http://localhost:20938/ASPEDB.DBServiceHost/DBOperations.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/ASPEDB.DTO.DB" />
   <xs:element name="Hello">
     <xs:complexType>
       <xs:sequence />
@@ -60,14 +61,14 @@
   <xs:element name="Insert">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/ASPEDB.DTO" minOccurs="0" name="point" nillable="true" type="q6:EncryptedPoint" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/ASPEDB.DTO.DB" minOccurs="0" name="dbPoint" nillable="true" type="q6:EncryptedDBPoint" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="InsertResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="InsertResult" type="xs:boolean" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/ASPEDB.DTO.DB" minOccurs="0" name="InsertResult" nillable="true" type="q7:DBOperationResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

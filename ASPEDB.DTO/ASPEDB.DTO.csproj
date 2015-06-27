@@ -41,6 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DB\DBOperationResponse.cs" />
+    <Compile Include="DB\DBPoint.cs" />
+    <Compile Include="DB\EncryptedDBPoint.cs" />
+    <Compile Include="DB\EncryptedDBValue.cs" />
+    <Compile Include="DB\UnEncryptedDBPoint.cs" />
+    <Compile Include="DB\UnEncryptedDBValue.cs" />
     <Compile Include="Point\EncryptedPoint.cs" />
     <Compile Include="Point\Point.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

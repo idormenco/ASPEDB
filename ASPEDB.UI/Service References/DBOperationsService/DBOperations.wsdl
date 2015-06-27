@@ -7,6 +7,7 @@
       <xsd:import schemaLocation="http://localhost:20938/ASPEDB.DBServiceHost/DBOperations.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ASPEDB.DTO.Query" />
       <xsd:import schemaLocation="http://localhost:20938/ASPEDB.DBServiceHost/DBOperations.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
       <xsd:import schemaLocation="http://localhost:20938/ASPEDB.DBServiceHost/DBOperations.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/ASPEDB.DTO" />
+      <xsd:import schemaLocation="http://localhost:20938/ASPEDB.DBServiceHost/DBOperations.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/ASPEDB.DTO.DB" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IDBOperations_Hello_InputMessage">

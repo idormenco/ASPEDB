@@ -44,3 +44,7 @@ D:\Disertatie\ASPEDB.UI\bin\Debug\ro\Xceed.Wpf.AvalonDock.resources.dll
 D:\Disertatie\ASPEDB.UI\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
 D:\Disertatie\ASPEDB.UI\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
 D:\Disertatie\ASPEDB.UI\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
+D:\Disertatie\ASPEDB.UI\bin\Debug\ASPEDB.Utils.dll
+D:\Disertatie\ASPEDB.UI\bin\Debug\ASPEDB.DTO.dll
+D:\Disertatie\ASPEDB.UI\bin\Debug\ASPEDB.Utils.pdb
+D:\Disertatie\ASPEDB.UI\bin\Debug\ASPEDB.DTO.pdb

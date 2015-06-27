@@ -1,4 +1,5 @@
 ﻿using ASPEDB.DTO;
+using ASPEDB.DTO.DB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -461,6 +462,13 @@ namespace ASPEDB.Utils
                 rez.p[i] = Math.Abs(point.p[i] - Math.Round(point.p[i])) > epsilon ? point.p[i] : Math.Round(point.p[i]);
             }
             return rez;
+        }
+
+        public static decimal[] GeneratePointFromValue(this decimal value,int d)
+        {
+            decimal[] point = new decimal[d];
+            point[d - 1] = value;
+            return point;
         }
     }
 }

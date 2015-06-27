@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ASPEDB.Utils;
 using ASPEDB.DTO.Query;
+using ASPEDB.DTO.DB;
 namespace ASPEDB.Test
 {
     class Program
@@ -46,8 +47,7 @@ namespace ASPEDB.Test
             wds.Add(5, 2);
             wds.Add(6, 5);
 
-            List<decimal> R = new List<decimal>() { 1, 1, 1, 1, 1, 1 };
-            SecretKey sk = new SecretKey(2, 6, "010", "101010", wds, R.ToArray(), Permutation,M1,M2,(decimal)Math.Pow(10,-10));
+            SecretKey sk = new SecretKey(2, 6, "101010", wds, Permutation, M1, M2, (decimal)Math.Pow(10, -10));
             ASPE aspe = new ASPE(sk);
             decimal[] p = new decimal[2] { 0, 1 };
             decimal[] p2 = new decimal[2] { 0, 5 };
@@ -56,10 +56,9 @@ namespace ASPEDB.Test
             Point point2 = new Point(p2);
             Query query = new Query(q);
             Console.Write("point = ");
-            var ep1 = aspe.Enc(point);
-            var eq = aspe.Que(query);
-            var ep2 = aspe.Enc(new Point(p2));
-            Console.WriteLine( aspe.Dis(ep1, ep2, eq));
+            var dbp = new DBPoint(1, 2, 3);
+            var edbp = aspe.EncryptDBPoint(dbp);
+            var ddbp = aspe.DecryptDBPointToValue(edbp);
             Console.ReadLine();
         }
     }

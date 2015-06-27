@@ -5,6 +5,7 @@ using System.Text;
 using System.ServiceModel;
 using ASPEDB.DTO;
 using ASPEDB.DTO.Query;
+using ASPEDB.DTO.DB;
 
 namespace ASPEDB.DBService
 {
@@ -15,7 +16,7 @@ namespace ASPEDB.DBService
         string Hello();
 
         [OperationContract]
-        IList<EncryptedPoint> Search(EncryptedQuery query);
+        IList<EncryptedDBPoint> Search(EncryptedQuery query);
 
         [OperationContract]
         bool Update(EncryptedQuery query, EncryptedPoint newPoint);
@@ -24,6 +25,6 @@ namespace ASPEDB.DBService
         bool Delete(EncryptedQuery query);
 
         [OperationContract]
-        bool Insert(EncryptedPoint point);
+        DBOperationResponse Insert(EncryptedDBPoint dbPoint);
     }
 }

@@ -146,6 +146,9 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\DBOperationsService\ASPEDB.UI.DBOperationsService.DBOperationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\DBOperationsService\ASPEDB.UI.DBOperationsService.EncryptedPoint.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -179,10 +182,19 @@
     <None Include="Service References\DBOperationsService\DBOperations22.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\DBOperationsService\DBOperations3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\DBOperationsService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ASPEDB.Utils\ASPEDB.Utils.csproj">
+      <Project>{ad101bcf-8a4c-4bab-ab4d-15dc1dc48c92}</Project>
+      <Name>ASPEDB.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

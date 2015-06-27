@@ -2,6 +2,7 @@ using ASPEDB.UI.DBOperationsService;
 using ASPEDB.UI.Model;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 
@@ -26,12 +27,61 @@ namespace ASPEDB.UI.ViewModel
         /// </summary>
         private DBOperationsClient dboc;
         public RelayCommand InsertCommand { get; private set; }
+        public RelayCommand ColumnNameKeyPressed { get; set; }
         public List<ComboBoxItem> DataTypes { get; private set; }
         public List<ComboBoxItem> OperationTypes { get; private set; }
-        public int SelectedDataType { get; set; }
+        private int _selectedDataType;
+        public int SelectedDataType
+        {
+            get
+            {
+                return _selectedDataType;
+            }
+            set
+            {
+                _selectedDataType = value;
+                SelectedValue = null;
+                ColumnName = null;
+                switch (DataTypes[value - 1].Value.ToLower())
+                {
+                    case "string":
+                        StringTextboxVisibility = Visibility.Visible;
+                        break;
+                    case "number":
+                        NumberTextBoxVisibility = Visibility.Visible;
+                        break;
+                    case "date":
+                        DatePickerVisibility = Visibility.Visible;
+                        break;
+                    default:
+                        throw new Exception("Unknown data type!");
+                }
+            }
+        }
         public int SelectedOperationType { get; set; }
-        public decimal? ColumnName { get; set; }
-        public decimal? SelectedValue { get; set; }
+        public decimal? _columnName;
+        public decimal? ColumnName
+        {
+            get { return _columnName; }
+            set
+            {
+                _columnName = value;
+                RaisePropertyChanged("ColumnName");
+            }
+        }
+        private decimal? _selectedValue;
+        public decimal? SelectedValue
+        {
+            get
+            {
+                return _selectedValue;
+            }
+            set
+            {
+                _selectedValue = value;
+                RaisePropertyChanged("SelectedValue");
+            }
+        }
         #region visibility of controls
         private Visibility _datePickerVisibility;
         public Visibility DatePickerVisibility
@@ -43,10 +93,11 @@ namespace ASPEDB.UI.ViewModel
             set
             {
                 _datePickerVisibility = value;
+                RaisePropertyChanged("DatePickerVisibility");
                 if (value == Visibility.Visible)
                 {
                     StringTextboxVisibility = Visibility.Collapsed;
-                    NumericTextBoxVisibility = Visibility.Collapsed;
+                    NumberTextBoxVisibility = Visibility.Collapsed;
                 }
             }
         }
@@ -61,24 +112,26 @@ namespace ASPEDB.UI.ViewModel
             set
             {
                 _stringTextboxVisibility = value;
+                RaisePropertyChanged("StringTextboxVisibility");
                 if (value == Visibility.Visible)
                 {
                     DatePickerVisibility = Visibility.Collapsed;
-                    NumericTextBoxVisibility = Visibility.Collapsed;
+                    NumberTextBoxVisibility = Visibility.Collapsed;
                 }
             }
         }
 
-        private Visibility _numericTextBoxVisibility;
-        public Visibility NumericTextBoxVisibility
+        private Visibility _numberTextBoxVisibility;
+        public Visibility NumberTextBoxVisibility
         {
             get
             {
-                return _numericTextBoxVisibility;
+                return _numberTextBoxVisibility;
             }
             set
             {
-                _numericTextBoxVisibility = value;
+                _numberTextBoxVisibility = value;
+                RaisePropertyChanged("NumberTextBoxVisibility");
                 if (value == Visibility.Visible)
                 {
                     DatePickerVisibility = Visibility.Collapsed;
@@ -96,20 +149,13 @@ namespace ASPEDB.UI.ViewModel
                 new ComboBoxItem(2,"String"),
                 new ComboBoxItem(3,"Date")
             };
-            InsertCommand = new RelayCommand(() =>
-            {
-                EncryptedPoint e = new EncryptedPoint();
-                MessageBox.Show(dboc.Hello());
-            },CanInsert);
-            NumericTextBoxVisibility = Visibility.Visible;
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
+            SelectedDataType = 1;
+            InsertCommand = new RelayCommand(InsertCommandExecuted, CanInsert);
+        }
+
+        private void InsertCommandExecuted()
+        {
+            MessageBox.Show(SelectedValue.ToString());
         }
 
         private bool CanInsert()

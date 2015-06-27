@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ASPEDB.DTO.Query
 {
+    [Serializable]
+    [DataContract]
     public class Query
     {
+        [DataMember]
         public decimal[] q { get; set; }
 
         public Query(int d)
@@ -21,6 +25,10 @@ namespace ASPEDB.DTO.Query
             {
                 q[i] = _q[i];
             }
+        }
+        public Query(Query q)
+            : this(q.q)
+        {
         }
     }
 }

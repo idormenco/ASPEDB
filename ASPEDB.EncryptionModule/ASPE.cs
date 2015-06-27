@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ASPEDB.Utils;
 using ASPEDB.DTO.Query;
+using ASPEDB.DTO.DB;
 namespace ASPEDB.EncryptionModule
 {
     public class ASPE
@@ -40,35 +41,36 @@ namespace ASPEDB.EncryptionModule
             pTilda[sk.d] = point.p.AspeNorm();
             decimal sum = 0;
             int k = sk.s.LastIndexOf('0');
-            for (int i = 0; i < sk.s.Length; i++)
+            for (int i = sk.s.Length - sk.d - 1; i < sk.dPrim; i++)
             {
                 if (sk.s[i] == '0')
                 {
-                    pTilda[sk.d + 1 + i] = rand.Next(255);
+                    pTilda[i] = rand.Next(255);
                     if (k != i)
                     {
-                        sum += sk.Wds[sk.d + 1 + (i + 1)] * pTilda[sk.d + 1 + i];
+                        sum += sk.Wds[i + 1] * pTilda[i];
                     }
                 }
                 else
                 {
-                    pTilda[sk.d + 1 + i] = sk.Wds[sk.d + 1 + (i + 1)];
+                    pTilda[i] = sk.Wds[i + 1];
                 }
             }
 
-            pTilda[k + sk.d + 1] = (decimal)(-sum / sk.Wds[sk.d + 1 + k + 1]);
+            pTilda[k] = (decimal)(-sum / sk.Wds[k + 1]);
             pTilda = pTilda.Permute(sk.Permutation);
             for (int i = 0; i < pTilda.Length; i++)
             {
-                if (sk.sw[i] == '1')
+                int ri = rand.Next(255);
+                if (sk.s[i] == '1')
                 {
-                    encPoint.pa[i] = pTilda[i] + rand.Next(255);//sk.R[i];
-                    encPoint.pb[i] = pTilda[i] - rand.Next(255); //sk.R[i];
+                    encPoint.pa[i] = pTilda[i] + ri;//sk.R[i];
+                    encPoint.pb[i] = pTilda[i] - ri; //sk.R[i];
                 }
                 else
                 {
-                    encPoint.pa[i] = pTilda[i] - rand.Next(255); //sk.R[i];
-                    encPoint.pb[i] = pTilda[i] + rand.Next(255); //sk.R[i];
+                    encPoint.pa[i] = pTilda[i] - ri; //sk.R[i];
+                    encPoint.pb[i] = pTilda[i] + ri; //sk.R[i];
                 }
             }
             encPoint.pa = sk.M1.Transpose().Multiply(encPoint.pa);
@@ -89,35 +91,27 @@ namespace ASPEDB.EncryptionModule
             qTilda[sk.d] = r;
             decimal sum = 0;
             int k = sk.s.LastIndexOf('1');
-            for (int i = 0; i < sk.s.Length; i++)
+            for (int i = sk.s.Length - sk.d - 1; i < sk.dPrim; i++)
             {
                 if (sk.s[i] == '1')
                 {
-                    qTilda[sk.d + 1 + i] = rand.Next(255);
+                    qTilda[i] = rand.Next(255);
                     if (k != i)
                     {
-                        sum += sk.Wds[sk.d + 1 + (i + 1)] * qTilda[sk.d + 1 + i];
+                        sum += sk.Wds[i + 1] * qTilda[i];
                     }
                 }
                 else
                 {
-                    qTilda[sk.d + 1 + i] = sk.Wds[sk.d + 1 + (i + 1)];
+                    qTilda[i] = sk.Wds[i + 1];
                 }
             }
-            qTilda[k + sk.d + 1] = (decimal)(-sum / sk.Wds[sk.d + 1 + k + 1]);
+            qTilda[k] = (decimal)(-sum / sk.Wds[k + 1]);
             qTilda = qTilda.Permute(sk.Permutation);
             for (int i = 0; i < qTilda.Length; i++)
             {
-                if (sk.sw[i] == '0')
-                {
-                    encQuery.qa[i] = qTilda[i] + rand.Next(255);//sk.R[i];
-                    encQuery.qb[i] = qTilda[i] - rand.Next(255);//sk.R[i];
-                }
-                else
-                {
-                    encQuery.qa[i] = qTilda[i] - rand.Next(255);//sk.R[i];
-                    encQuery.qb[i] = qTilda[i] + rand.Next(255);//sk.R[i];
-                }
+                encQuery.qa[i] = qTilda[i];
+                encQuery.qb[i] = qTilda[i];
             }
             encQuery.qa = sk.M1.Inverse().Multiply(encQuery.qa);
             encQuery.qb = sk.M2.Inverse().Multiply(encQuery.qb);
@@ -135,16 +129,51 @@ namespace ASPEDB.EncryptionModule
             var pHata = sk.M1.Transpose().Inverse().Multiply(encryptedPoint.pa);
             var pHatb = sk.M2.Transpose().Inverse().Multiply(encryptedPoint.pb);
             pHata = pHata.Permute(sk.Permutation.Transpose());
-            pHatb = pHatb.Permute(sk.Permutation);
+            pHatb = pHatb.Permute(sk.Permutation.Transpose());
             pHata = pHata.ReduceDimension(sk.d);
+            pHatb = pHatb.ReduceDimension(sk.d);
             for (int i = 0; i < pHata.Length; i++)
             {
-                if (sk.sw[i] == '0')
-                {
-                    point.p[i] = pHata[i] - sk.R[i];
-                }
+                point.p[i] = (pHata[i] + pHatb[i]) / 2;
             }
             return point.RoundValues(sk.epsilon);
+        }
+
+        public EncryptedDBValue EncryptDBValue(UnEncryptedDBValue dbValue)
+        {
+            EncryptedDBValue ecdbv = new EncryptedDBValue(this.Enc(dbValue.C), this.Enc(dbValue.D));
+            return ecdbv;
+        }
+
+        public UnEncryptedDBValue DecryptDBValue(EncryptedDBValue dbValue)
+        {
+            UnEncryptedDBValue unedbv = new UnEncryptedDBValue(this.Dec(dbValue.C), this.Dec(dbValue.D));
+            return unedbv;
+        }
+        public EncryptedDBPoint EncryptDBPoint(UnEncryptedDBPoint uedbp)
+        {
+            EncryptedDBPoint edbp = new EncryptedDBPoint(this.EncryptDBValue(uedbp.Type),
+                this.EncryptDBValue(uedbp.Name),
+                this.EncryptDBValue(uedbp.Value));
+            return edbp;
+        }
+        public UnEncryptedDBPoint DecryptDBPoint(EncryptedDBPoint edbp)
+        {
+            UnEncryptedDBPoint uedbp = new UnEncryptedDBPoint(this.DecryptDBValue(edbp.Type), this.DecryptDBValue(edbp.Name), this.DecryptDBValue(edbp.Value));
+            return uedbp;
+        }
+
+        public EncryptedDBPoint EncryptDBPoint(DBPoint dbPoint)
+        {
+            EncryptedDBPoint edbp = new EncryptedDBPoint(this.EncryptDBValue(DBPointsUtils.GenerateUnEncryptedDBValue(dbPoint.Type, sk.d)),
+                this.EncryptDBValue(DBPointsUtils.GenerateUnEncryptedDBValue(dbPoint.Name, sk.d)),
+                this.EncryptDBValue(DBPointsUtils.GenerateUnEncryptedDBValue(dbPoint.Value, sk.d)));
+            return edbp;
+        }
+        public DBPoint DecryptDBPointToValue(EncryptedDBPoint edbp)
+        {
+            UnEncryptedDBPoint uedbp = new UnEncryptedDBPoint(this.DecryptDBValue(edbp.Type), this.DecryptDBValue(edbp.Name), this.DecryptDBValue(edbp.Value));
+            return uedbp.RecoverDBPointValue(sk.epsilon);
         }
     }
 }
