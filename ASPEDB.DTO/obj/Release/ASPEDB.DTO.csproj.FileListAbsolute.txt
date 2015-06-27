@@ -1,0 +1,5 @@
+D:\Disertatie\ASPEDB.DTO\bin\Release\ASPEDB.DTO.dll
+D:\Disertatie\ASPEDB.DTO\bin\Release\ASPEDB.DTO.pdb
+D:\Disertatie\ASPEDB.DTO\obj\Release\ASPEDB.DTO.csprojResolveAssemblyReference.cache
+D:\Disertatie\ASPEDB.DTO\obj\Release\ASPEDB.DTO.dll
+D:\Disertatie\ASPEDB.DTO\obj\Release\ASPEDB.DTO.pdb

@@ -1,0 +1,12 @@
+D:\Disertatie\ASPEDB.DBService\bin\Release\ASPEDB.DBService.dll
+D:\Disertatie\ASPEDB.DBService\bin\Release\ASPEDB.DBService.pdb
+D:\Disertatie\ASPEDB.DBService\bin\Release\ASPEDB.DTO.dll
+D:\Disertatie\ASPEDB.DBService\bin\Release\MongoDB.Bson.dll
+D:\Disertatie\ASPEDB.DBService\bin\Release\MongoDB.Driver.Core.dll
+D:\Disertatie\ASPEDB.DBService\bin\Release\MongoDB.Driver.dll
+D:\Disertatie\ASPEDB.DBService\bin\Release\ASPEDB.DTO.pdb
+D:\Disertatie\ASPEDB.DBService\bin\Release\MongoDB.Bson.xml
+D:\Disertatie\ASPEDB.DBService\bin\Release\MongoDB.Driver.xml
+D:\Disertatie\ASPEDB.DBService\obj\Release\ASPEDB.DBService.csprojResolveAssemblyReference.cache
+D:\Disertatie\ASPEDB.DBService\obj\Release\ASPEDB.DBService.dll
+D:\Disertatie\ASPEDB.DBService\obj\Release\ASPEDB.DBService.pdb

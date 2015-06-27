@@ -9,330 +9,7 @@
 //------------------------------------------------------------------------------
 
 namespace ASPEDB.UI.DBOperationsService {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="EncryptedQuery", Namespace="http://schemas.datacontract.org/2004/07/ASPEDB.DTO.Query")]
-    [System.SerializableAttribute()]
-    public partial class EncryptedQuery : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private decimal[] qaField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private decimal[] qbField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal[] qa {
-            get {
-                return this.qaField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.qaField, value) != true)) {
-                    this.qaField = value;
-                    this.RaisePropertyChanged("qa");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal[] qb {
-            get {
-                return this.qbField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.qbField, value) != true)) {
-                    this.qbField = value;
-                    this.RaisePropertyChanged("qb");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="EncryptedPoint", Namespace="http://schemas.datacontract.org/2004/07/ASPEDB.DTO")]
-    [System.SerializableAttribute()]
-    public partial class EncryptedPoint : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private decimal[] paField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private decimal[] pbField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal[] pa {
-            get {
-                return this.paField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.paField, value) != true)) {
-                    this.paField = value;
-                    this.RaisePropertyChanged("pa");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal[] pb {
-            get {
-                return this.pbField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.pbField, value) != true)) {
-                    this.pbField = value;
-                    this.RaisePropertyChanged("pb");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="EncryptedDBPoint", Namespace="http://schemas.datacontract.org/2004/07/ASPEDB.DTO.DB")]
-    [System.SerializableAttribute()]
-    public partial class EncryptedDBPoint : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private ASPEDB.UI.DBOperationsService.EncryptedDBValue NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private ASPEDB.UI.DBOperationsService.EncryptedDBValue TypeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private ASPEDB.UI.DBOperationsService.EncryptedDBValue ValueField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public ASPEDB.UI.DBOperationsService.EncryptedDBValue Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public ASPEDB.UI.DBOperationsService.EncryptedDBValue Type {
-            get {
-                return this.TypeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TypeField, value) != true)) {
-                    this.TypeField = value;
-                    this.RaisePropertyChanged("Type");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public ASPEDB.UI.DBOperationsService.EncryptedDBValue Value {
-            get {
-                return this.ValueField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ValueField, value) != true)) {
-                    this.ValueField = value;
-                    this.RaisePropertyChanged("Value");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="EncryptedDBValue", Namespace="http://schemas.datacontract.org/2004/07/ASPEDB.DTO.DB")]
-    [System.SerializableAttribute()]
-    public partial class EncryptedDBValue : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private ASPEDB.UI.DBOperationsService.EncryptedPoint CField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private ASPEDB.UI.DBOperationsService.EncryptedPoint DField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public ASPEDB.UI.DBOperationsService.EncryptedPoint C {
-            get {
-                return this.CField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CField, value) != true)) {
-                    this.CField = value;
-                    this.RaisePropertyChanged("C");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public ASPEDB.UI.DBOperationsService.EncryptedPoint D {
-            get {
-                return this.DField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DField, value) != true)) {
-                    this.DField = value;
-                    this.RaisePropertyChanged("D");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DBOperationResponse", Namespace="http://schemas.datacontract.org/2004/07/ASPEDB.DTO.DB")]
-    [System.SerializableAttribute()]
-    public partial class DBOperationResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool IsOperationExecutedField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string MessageField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsOperationExecuted {
-            get {
-                return this.IsOperationExecutedField;
-            }
-            set {
-                if ((this.IsOperationExecutedField.Equals(value) != true)) {
-                    this.IsOperationExecutedField = value;
-                    this.RaisePropertyChanged("IsOperationExecuted");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Message {
-            get {
-                return this.MessageField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
-                    this.MessageField = value;
-                    this.RaisePropertyChanged("Message");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DBOperationsService.IDBOperations")]
@@ -345,28 +22,28 @@ namespace ASPEDB.UI.DBOperationsService {
         System.Threading.Tasks.Task<string> HelloAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBOperations/Search", ReplyAction="http://tempuri.org/IDBOperations/SearchResponse")]
-        ASPEDB.UI.DBOperationsService.EncryptedPoint[] Search(ASPEDB.UI.DBOperationsService.EncryptedQuery query);
+        ASPEDB.DTO.DB.EncryptedDBPoint[] Search(ASPEDB.DTO.EncryptedQuery query);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBOperations/Search", ReplyAction="http://tempuri.org/IDBOperations/SearchResponse")]
-        System.Threading.Tasks.Task<ASPEDB.UI.DBOperationsService.EncryptedPoint[]> SearchAsync(ASPEDB.UI.DBOperationsService.EncryptedQuery query);
+        System.Threading.Tasks.Task<ASPEDB.DTO.DB.EncryptedDBPoint[]> SearchAsync(ASPEDB.DTO.EncryptedQuery query);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBOperations/Update", ReplyAction="http://tempuri.org/IDBOperations/UpdateResponse")]
-        bool Update(ASPEDB.UI.DBOperationsService.EncryptedQuery query, ASPEDB.UI.DBOperationsService.EncryptedPoint newPoint);
+        bool Update(ASPEDB.DTO.EncryptedQuery query, ASPEDB.DTO.EncryptedPoint newPoint);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBOperations/Update", ReplyAction="http://tempuri.org/IDBOperations/UpdateResponse")]
-        System.Threading.Tasks.Task<bool> UpdateAsync(ASPEDB.UI.DBOperationsService.EncryptedQuery query, ASPEDB.UI.DBOperationsService.EncryptedPoint newPoint);
+        System.Threading.Tasks.Task<bool> UpdateAsync(ASPEDB.DTO.EncryptedQuery query, ASPEDB.DTO.EncryptedPoint newPoint);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBOperations/Delete", ReplyAction="http://tempuri.org/IDBOperations/DeleteResponse")]
-        bool Delete(ASPEDB.UI.DBOperationsService.EncryptedQuery query);
+        bool Delete(ASPEDB.DTO.EncryptedQuery query);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBOperations/Delete", ReplyAction="http://tempuri.org/IDBOperations/DeleteResponse")]
-        System.Threading.Tasks.Task<bool> DeleteAsync(ASPEDB.UI.DBOperationsService.EncryptedQuery query);
+        System.Threading.Tasks.Task<bool> DeleteAsync(ASPEDB.DTO.EncryptedQuery query);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBOperations/Insert", ReplyAction="http://tempuri.org/IDBOperations/InsertResponse")]
-        ASPEDB.UI.DBOperationsService.DBOperationResponse Insert(ASPEDB.UI.DBOperationsService.EncryptedDBPoint dbPoint);
+        ASPEDB.DTO.DB.DBOperationResponse Insert(ASPEDB.DTO.DB.EncryptedDBPoint dbPoint);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBOperations/Insert", ReplyAction="http://tempuri.org/IDBOperations/InsertResponse")]
-        System.Threading.Tasks.Task<ASPEDB.UI.DBOperationsService.DBOperationResponse> InsertAsync(ASPEDB.UI.DBOperationsService.EncryptedDBPoint dbPoint);
+        System.Threading.Tasks.Task<ASPEDB.DTO.DB.DBOperationResponse> InsertAsync(ASPEDB.DTO.DB.EncryptedDBPoint dbPoint);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -404,35 +81,35 @@ namespace ASPEDB.UI.DBOperationsService {
             return base.Channel.HelloAsync();
         }
         
-        public ASPEDB.UI.DBOperationsService.EncryptedPoint[] Search(ASPEDB.UI.DBOperationsService.EncryptedQuery query) {
+        public ASPEDB.DTO.DB.EncryptedDBPoint[] Search(ASPEDB.DTO.EncryptedQuery query) {
             return base.Channel.Search(query);
         }
         
-        public System.Threading.Tasks.Task<ASPEDB.UI.DBOperationsService.EncryptedPoint[]> SearchAsync(ASPEDB.UI.DBOperationsService.EncryptedQuery query) {
+        public System.Threading.Tasks.Task<ASPEDB.DTO.DB.EncryptedDBPoint[]> SearchAsync(ASPEDB.DTO.EncryptedQuery query) {
             return base.Channel.SearchAsync(query);
         }
         
-        public bool Update(ASPEDB.UI.DBOperationsService.EncryptedQuery query, ASPEDB.UI.DBOperationsService.EncryptedPoint newPoint) {
+        public bool Update(ASPEDB.DTO.EncryptedQuery query, ASPEDB.DTO.EncryptedPoint newPoint) {
             return base.Channel.Update(query, newPoint);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdateAsync(ASPEDB.UI.DBOperationsService.EncryptedQuery query, ASPEDB.UI.DBOperationsService.EncryptedPoint newPoint) {
+        public System.Threading.Tasks.Task<bool> UpdateAsync(ASPEDB.DTO.EncryptedQuery query, ASPEDB.DTO.EncryptedPoint newPoint) {
             return base.Channel.UpdateAsync(query, newPoint);
         }
         
-        public bool Delete(ASPEDB.UI.DBOperationsService.EncryptedQuery query) {
+        public bool Delete(ASPEDB.DTO.EncryptedQuery query) {
             return base.Channel.Delete(query);
         }
         
-        public System.Threading.Tasks.Task<bool> DeleteAsync(ASPEDB.UI.DBOperationsService.EncryptedQuery query) {
+        public System.Threading.Tasks.Task<bool> DeleteAsync(ASPEDB.DTO.EncryptedQuery query) {
             return base.Channel.DeleteAsync(query);
         }
         
-        public ASPEDB.UI.DBOperationsService.DBOperationResponse Insert(ASPEDB.UI.DBOperationsService.EncryptedDBPoint dbPoint) {
+        public ASPEDB.DTO.DB.DBOperationResponse Insert(ASPEDB.DTO.DB.EncryptedDBPoint dbPoint) {
             return base.Channel.Insert(dbPoint);
         }
         
-        public System.Threading.Tasks.Task<ASPEDB.UI.DBOperationsService.DBOperationResponse> InsertAsync(ASPEDB.UI.DBOperationsService.EncryptedDBPoint dbPoint) {
+        public System.Threading.Tasks.Task<ASPEDB.DTO.DB.DBOperationResponse> InsertAsync(ASPEDB.DTO.DB.EncryptedDBPoint dbPoint) {
             return base.Channel.InsertAsync(dbPoint);
         }
     }

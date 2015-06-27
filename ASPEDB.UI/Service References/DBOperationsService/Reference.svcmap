@@ -27,7 +27,6 @@
     <MetadataFile FileName="DBOperations.wsdl" MetadataType="Wsdl" ID="85114faf-eef8-4f7d-a38c-d94b89ba8487" SourceId="1" SourceUrl="http://localhost:20938/ASPEDB.DBServiceHost/DBOperations.svc?wsdl" />
     <MetadataFile FileName="DBOperations1.xsd" MetadataType="Schema" ID="0c5e7585-c8ef-4e7c-89a9-a128c5e54468" SourceId="1" SourceUrl="http://localhost:20938/ASPEDB.DBServiceHost/DBOperations.svc?xsd=xsd1" />
     <MetadataFile FileName="DBOperations21.xsd" MetadataType="Schema" ID="aa0968f1-d766-4ee3-b165-7202c189b25d" SourceId="1" SourceUrl="http://localhost:20938/ASPEDB.DBServiceHost/DBOperations.svc?xsd=xsd4" />
-    <MetadataFile FileName="DBOperations3.xsd" MetadataType="Schema" ID="2940f4f8-8935-41fe-9102-8d72a36f8e11" SourceId="1" SourceUrl="http://localhost:20938/ASPEDB.DBServiceHost/DBOperations.svc?xsd=xsd5" />
     <MetadataFile FileName="DBOperations22.xsd" MetadataType="Schema" ID="e0802d52-94be-4a4c-b084-7b840a6b0fe0" SourceId="1" SourceUrl="http://localhost:20938/ASPEDB.DBServiceHost/DBOperations.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>

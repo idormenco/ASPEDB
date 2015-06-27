@@ -5,6 +5,10 @@ using GalaSoft.MvvmLight.CommandWpf;
 using System;
 using System.Collections.Generic;
 using System.Windows;
+using ASPEDB.DTO;
+using ASPEDB.DTO.DB;
+using ASPEDB.EncryptionModule;
+using EncryptedDBPoint = ASPEDB.DTO.DB.EncryptedDBPoint;
 
 namespace ASPEDB.UI.ViewModel
 {
@@ -25,10 +29,11 @@ namespace ASPEDB.UI.ViewModel
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        private DBOperationsClient dboc;
+        private DBOperationsClient _dboc;
         public RelayCommand InsertCommand { get; private set; }
         public RelayCommand ColumnNameKeyPressed { get; set; }
         public List<ComboBoxItem> DataTypes { get; private set; }
+        public ASPE ASPE { get; set; }
         private int _selectedDataType;
         public int SelectedDataType
         {
@@ -57,7 +62,7 @@ namespace ASPEDB.UI.ViewModel
                 }
             }
         }
-        public int SelectedOperationType { get; set; }
+
         private decimal? _columnName;
         public decimal? ColumnName
         {
@@ -68,6 +73,7 @@ namespace ASPEDB.UI.ViewModel
                 RaisePropertyChanged("ColumnName");
             }
         }
+
         private decimal? _selectedValue;
         public decimal? SelectedValue
         {
@@ -81,6 +87,7 @@ namespace ASPEDB.UI.ViewModel
                 RaisePropertyChanged("SelectedValue");
             }
         }
+
         #region visibility of controls
         private Visibility _datePickerVisibility;
         public Visibility DatePickerVisibility
@@ -142,7 +149,42 @@ namespace ASPEDB.UI.ViewModel
         //private DBOperations
         public MainViewModel()
         {
-            dboc = new DBOperationsClient();
+            #region secretkey
+
+            decimal[][] M1 = new decimal[][]
+            {
+                new decimal[]{9,4,3,3,8,6},
+                new decimal[]{6,6,2,0,2,7}, 
+                new decimal[]{4,4,4,6,2,0},
+                new decimal[]{5,4,4,4,3,4},
+                new decimal[]{4,9,2,6,5,4}, 
+                new decimal[]{2,3,5,1,2,0}
+            };
+            decimal[][] M2 = new decimal[][]
+            {
+                new decimal[]{3,1,3,2,8,4},
+                new decimal[]{4,4,5,5,0,9}, 
+                new decimal[]{2,1,6,4,8,9},
+                new decimal[]{6,7,2,8,0,7},
+                new decimal[]{0,3,5,9,3,4}, 
+                new decimal[]{4,8,5,6,1,6}
+            };
+            decimal[][] permutation = new decimal[][]
+            {
+                new decimal[]{0,1,0,0,0,0},
+                new decimal[]{0,0,0,1,0,0}, 
+                new decimal[]{1,0,0,0,0,0},
+                new decimal[]{0,0,0,0,1,0},
+                new decimal[]{0,0,0,0,0,1}, 
+                new decimal[]{0,0,1,0,0,0}
+            };
+            Dictionary<int, decimal> wds = new Dictionary<int, decimal> {{4, 8}, {5, 2}, {6, 5}};
+            var sk = new SecretKey(2, 6, "101010", wds, permutation, M1, M2, (decimal)Math.Pow(10, -10));
+            ASPE = new ASPE(sk);
+
+            #endregion
+
+            _dboc = new DBOperationsClient();
             DataTypes = new List<ComboBoxItem>(){
                 new ComboBoxItem(1,"Number"),
                 new ComboBoxItem(2,"String"),
@@ -152,9 +194,15 @@ namespace ASPEDB.UI.ViewModel
             InsertCommand = new RelayCommand(InsertCommandExecuted, CanInsert);
         }
 
+
+
         private void InsertCommandExecuted()
         {
-            MessageBox.Show(SelectedValue.ToString());
+            StringToDecimalConvertor stdc = new StringToDecimalConvertor();
+            decimal? dataType = (decimal?)stdc.ConvertBack(DataTypes[SelectedDataType - 1].Value.ToLower(), null, null, null);
+            DBPoint dbp = new DBPoint(dataType.Value, ColumnName.Value, SelectedValue.Value);
+            EncryptedDBPoint edbp = ASPE.EncryptDBPoint(dbp);
+            _dboc.Insert(edbp.EncryptedDBPointToServer());
         }
 
         private bool CanInsert()

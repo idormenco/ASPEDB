@@ -141,17 +141,13 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\ASPEDB.DTO.DB.DBOperationResponse.datasource" />
+    <None Include="Properties\DataSources\ASPEDB.DTO.DB.EncryptedDBPoint.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\DBOperationsService\ASPEDB.UI.DBOperationsService.DBOperationResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\DBOperationsService\ASPEDB.UI.DBOperationsService.EncryptedPoint.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Service References\DBOperationsService\DBOperations.wsdl" />
     <None Include="Service References\DBOperationsService\DBOperations.xsd">
       <SubType>Designer</SubType>
@@ -182,15 +178,20 @@
     <None Include="Service References\DBOperationsService\DBOperations22.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\DBOperationsService\DBOperations3.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\DBOperationsService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ASPEDB.DTO\ASPEDB.DTO.csproj">
+      <Project>{57C6B938-C19D-4155-98C6-03723772D5DC}</Project>
+      <Name>ASPEDB.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASPEDB.EncryptionModule\ASPEDB.EncryptionModule.csproj">
+      <Project>{4884711B-3B5F-4F2C-A7BE-04A6E32D449B}</Project>
+      <Name>ASPEDB.EncryptionModule</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ASPEDB.Utils\ASPEDB.Utils.csproj">
       <Project>{ad101bcf-8a4c-4bab-ab4d-15dc1dc48c92}</Project>
       <Name>ASPEDB.Utils</Name>

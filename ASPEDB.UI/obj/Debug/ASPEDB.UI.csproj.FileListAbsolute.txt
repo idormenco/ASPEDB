@@ -48,3 +48,5 @@ D:\Disertatie\ASPEDB.UI\obj\Debug\ASPEDB.UI.Properties.Resources.resources
 D:\Disertatie\ASPEDB.UI\obj\Debug\ASPEDB.UI.csproj.GenerateResource.Cache
 D:\Disertatie\ASPEDB.UI\obj\Debug\ASPEDB.UI.exe
 D:\Disertatie\ASPEDB.UI\obj\Debug\ASPEDB.UI.pdb
+D:\Disertatie\ASPEDB.UI\bin\Debug\ASPEDB.EncryptionModule.dll
+D:\Disertatie\ASPEDB.UI\bin\Debug\ASPEDB.EncryptionModule.pdb
