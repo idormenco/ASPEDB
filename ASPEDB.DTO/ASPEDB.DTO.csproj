@@ -41,12 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DB\ComparationOperations.cs" />
     <Compile Include="DB\DBOperationResponse.cs" />
-    <Compile Include="DB\DBPoint.cs" />
-    <Compile Include="DB\EncryptedDBPoint.cs" />
-    <Compile Include="DB\EncryptedDBValue.cs" />
-    <Compile Include="DB\UnEncryptedDBPoint.cs" />
-    <Compile Include="DB\UnEncryptedDBValue.cs" />
+    <Compile Include="DB\Data\DBPoint.cs" />
+    <Compile Include="DB\Data\EncryptedDBPoint.cs" />
+    <Compile Include="DB\Data\EncryptedDBValue.cs" />
+    <Compile Include="DB\Data\UnEncryptedDBPoint.cs" />
+    <Compile Include="DB\Data\UnEncryptedDBValue.cs" />
+    <Compile Include="DB\Query\DBQuery.cs" />
+    <Compile Include="DB\Query\EncryptedDBQuery.cs" />
+    <Compile Include="DB\Query\UnEncryptedDBQuery.cs" />
     <Compile Include="Point\EncryptedPoint.cs" />
     <Compile Include="Point\Point.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -54,6 +58,7 @@
     <Compile Include="Query\Query.cs" />
     <Compile Include="SecretKey.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

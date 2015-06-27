@@ -1,13 +1,8 @@
-﻿using ASPEDB.DTO;
-using ASPEDB.DTO.DB;
-using ASPEDB.DTO.Query;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ASPEDB.DTO;
+using ASPEDB.DTO.DB;
+using MongoDB.Driver;
 
 namespace ASPEDB.DBService
 {

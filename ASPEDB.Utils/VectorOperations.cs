@@ -464,7 +464,14 @@ namespace ASPEDB.Utils
             return rez;
         }
 
-        public static decimal[] GeneratePointFromValue(this decimal value,int d)
+        public static decimal[] GeneratePointFromValue(this decimal value, int d)
+        {
+            decimal[] point = new decimal[d];
+            point[d - 1] = value;
+            return point;
+        }
+
+        public static decimal[] GenerateQueryFromValue(this decimal value, int d)
         {
             decimal[] point = new decimal[d];
             point[d - 1] = value;

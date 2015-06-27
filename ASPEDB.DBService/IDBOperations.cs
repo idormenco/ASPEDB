@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.ServiceModel;
 using ASPEDB.DTO;
-using ASPEDB.DTO.Query;
 using ASPEDB.DTO.DB;
 
 namespace ASPEDB.DBService

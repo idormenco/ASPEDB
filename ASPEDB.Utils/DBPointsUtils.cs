@@ -1,10 +1,6 @@
-﻿using ASPEDB.DTO;
+﻿using System;
+using ASPEDB.DTO;
 using ASPEDB.DTO.DB;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ASPEDB.Utils
 {
@@ -45,6 +41,7 @@ namespace ASPEDB.Utils
             decimal value = uedbp.Value.RecoverPoint(epsilon).RecoverValue();
             return new DBPoint(type, name, value);
         }
+
         public static decimal RecoverValue(this Point unencryptedPoint)
         {
             return unencryptedPoint.p[unencryptedPoint.p.Length - 1];
@@ -54,6 +51,17 @@ namespace ASPEDB.Utils
         {
             Point p = new Point(value.GeneratePointFromValue(d));
             return new UnEncryptedDBValue(p.HidePoint());
+        }
+
+        public static UnEncryptedDBQuery GenerateUnEncryptedDBQuery(decimal type, decimal name, Operator @operator,
+            decimal value, decimal optionalValue, int d)
+        {
+            Query qType = new Query(type.GenerateQueryFromValue(d));
+            Query qNam = new Query(name.GenerateQueryFromValue(d));
+            Query qValue = new Query(value.GenerateQueryFromValue(d));
+            Query qOptionalValue = new Query(optionalValue.GenerateQueryFromValue(d));
+            UnEncryptedDBQuery uedbq = new UnEncryptedDBQuery(qType, qNam, @operator, qValue, qOptionalValue);
+            return uedbq;
         }
 
         public static UnEncryptedDBPoint GenerateUnEncryptedDBPoint(decimal type, decimal name, decimal value, int d)
@@ -71,6 +79,14 @@ namespace ASPEDB.Utils
             return new UnEncryptedDBPoint(pType.HidePoint(), pName.HidePoint(), pValue.HidePoint());
         }
 
+        public static UnEncryptedDBQuery GenerateUnEncryptedDBQuery(DBQuery dbQuery, int d)
+        {
+            Query qType = new Query(dbQuery.Type.GenerateQueryFromValue(d));
+            Query qNam = new Query(dbQuery.Name.GenerateQueryFromValue(d));
+            Query qValue = new Query(dbQuery.Value.GenerateQueryFromValue(d));
+            Query qOptionalValue = new Query(dbQuery.OptionalValue.GenerateQueryFromValue(d));
+            UnEncryptedDBQuery uedbq = new UnEncryptedDBQuery(qType, qNam, dbQuery.Operator, qValue, qOptionalValue);
+            return uedbq;
+        }
     }
 }
-

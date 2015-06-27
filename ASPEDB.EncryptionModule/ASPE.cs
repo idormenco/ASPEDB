@@ -1,13 +1,8 @@
-﻿using ASPEDB.DTO;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ASPEDB.Utils;
-using ASPEDB.DTO.Query;
+﻿using System;
+using ASPEDB.DTO;
 using ASPEDB.DTO.DB;
+using ASPEDB.Utils;
+
 namespace ASPEDB.EncryptionModule
 {
     public class ASPE
@@ -64,13 +59,13 @@ namespace ASPEDB.EncryptionModule
                 int ri = rand.Next(255);
                 if (sk.s[i] == '1')
                 {
-                    encPoint.pa[i] = pTilda[i] + ri;//sk.R[i];
-                    encPoint.pb[i] = pTilda[i] - ri; //sk.R[i];
+                    encPoint.pa[i] = pTilda[i] + ri;
+                    encPoint.pb[i] = pTilda[i] - ri;
                 }
                 else
                 {
-                    encPoint.pa[i] = pTilda[i] - ri; //sk.R[i];
-                    encPoint.pb[i] = pTilda[i] + ri; //sk.R[i];
+                    encPoint.pa[i] = pTilda[i] - ri;
+                    encPoint.pb[i] = pTilda[i] + ri;
                 }
             }
             encPoint.pa = sk.M1.Transpose().Multiply(encPoint.pa);
@@ -150,6 +145,7 @@ namespace ASPEDB.EncryptionModule
             UnEncryptedDBValue unedbv = new UnEncryptedDBValue(this.Dec(dbValue.C), this.Dec(dbValue.D));
             return unedbv;
         }
+
         public EncryptedDBPoint EncryptDBPoint(UnEncryptedDBPoint uedbp)
         {
             EncryptedDBPoint edbp = new EncryptedDBPoint(this.EncryptDBValue(uedbp.Type),
@@ -157,23 +153,35 @@ namespace ASPEDB.EncryptionModule
                 this.EncryptDBValue(uedbp.Value));
             return edbp;
         }
+
         public UnEncryptedDBPoint DecryptDBPoint(EncryptedDBPoint edbp)
         {
-            UnEncryptedDBPoint uedbp = new UnEncryptedDBPoint(this.DecryptDBValue(edbp.Type), this.DecryptDBValue(edbp.Name), this.DecryptDBValue(edbp.Value));
+            UnEncryptedDBPoint uedbp = new UnEncryptedDBPoint(this.DecryptDBValue(edbp.Type),
+                this.DecryptDBValue(edbp.Name), this.DecryptDBValue(edbp.Value));
             return uedbp;
         }
 
         public EncryptedDBPoint EncryptDBPoint(DBPoint dbPoint)
         {
-            EncryptedDBPoint edbp = new EncryptedDBPoint(this.EncryptDBValue(DBPointsUtils.GenerateUnEncryptedDBValue(dbPoint.Type, sk.d)),
-                this.EncryptDBValue(DBPointsUtils.GenerateUnEncryptedDBValue(dbPoint.Name, sk.d)),
-                this.EncryptDBValue(DBPointsUtils.GenerateUnEncryptedDBValue(dbPoint.Value, sk.d)));
+            EncryptedDBPoint edbp =
+                new EncryptedDBPoint(this.EncryptDBValue(DBPointsUtils.GenerateUnEncryptedDBValue(dbPoint.Type, sk.d)),
+                    this.EncryptDBValue(DBPointsUtils.GenerateUnEncryptedDBValue(dbPoint.Name, sk.d)),
+                    this.EncryptDBValue(DBPointsUtils.GenerateUnEncryptedDBValue(dbPoint.Value, sk.d)));
             return edbp;
         }
+
         public DBPoint DecryptDBPointToValue(EncryptedDBPoint edbp)
         {
-            UnEncryptedDBPoint uedbp = new UnEncryptedDBPoint(this.DecryptDBValue(edbp.Type), this.DecryptDBValue(edbp.Name), this.DecryptDBValue(edbp.Value));
+            UnEncryptedDBPoint uedbp = new UnEncryptedDBPoint(this.DecryptDBValue(edbp.Type),
+                this.DecryptDBValue(edbp.Name), this.DecryptDBValue(edbp.Value));
             return uedbp.RecoverDBPointValue(sk.epsilon);
+        }
+
+        public EncryptedDBQuery EncryptDBQuery(DBQuery dbq)
+        {
+            UnEncryptedDBQuery uedbq = new UnEncryptedDBQuery(DBPointsUtils.GenerateUnEncryptedDBQuery(dbq, sk.d));
+            return new EncryptedDBQuery(this.Que(uedbq.Type), this.Que(uedbq.Name), uedbq.Operator,
+                this.Que(uedbq.Value), this.Que(uedbq.OptionalValue));
         }
     }
 }
