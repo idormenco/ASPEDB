@@ -16,9 +16,9 @@ namespace ASPEDB.DTO.DB
         [DataMember]
         public decimal Value { get; set; }
         [DataMember]
-        public decimal OptionalValue { get; set; }
+        public decimal? OptionalValue { get; set; }
 
-        public DBQuery(decimal type, decimal name, Operator @operator, decimal value, decimal optionalValue)
+        public DBQuery(decimal type, decimal name, Operator @operator, decimal value, decimal? optionalValue)
         {
             Type = type;
             Name = name;

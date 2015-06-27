@@ -24,7 +24,8 @@ namespace ASPEDB.DTO.DB
             this.Name = new EncryptedQuery(name);
             this.Operator = @operator;
             this.Value = new EncryptedQuery(value);
-            this.OptionalValue = new EncryptedQuery(optionalValue);
+            if (optionalValue != null)
+                this.OptionalValue = new EncryptedQuery(optionalValue);
         }
 
         public EncryptedDBQuery(EncryptedDBQuery edbq)

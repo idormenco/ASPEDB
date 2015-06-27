@@ -181,7 +181,7 @@ namespace ASPEDB.EncryptionModule
         {
             UnEncryptedDBQuery uedbq = new UnEncryptedDBQuery(DBPointsUtils.GenerateUnEncryptedDBQuery(dbq, sk.d));
             return new EncryptedDBQuery(this.Que(uedbq.Type), this.Que(uedbq.Name), uedbq.Operator,
-                this.Que(uedbq.Value), this.Que(uedbq.OptionalValue));
+                this.Que(uedbq.Value), uedbq.OptionalValue != null ? this.Que(uedbq.OptionalValue) : null);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using ASPEDB.DTO;
+
 namespace ASPEDB.DTO.DB
 {
     [Serializable]
@@ -24,10 +24,11 @@ namespace ASPEDB.DTO.DB
             Name = new Query(name);
             Value = new Query(value);
             Operator = @operator;
-            OptionalValue = new Query(optionalValue);
+            if (optionalValue != null)
+                OptionalValue = new Query(optionalValue);
         }
         public UnEncryptedDBQuery(Query type, Query name, Operator @operator, Query value, Query optionalValue)
-            : this(type.q, name.q, @operator, value.q, optionalValue.q)
+            : this(type.q, name.q, @operator, value.q, optionalValue != null ? optionalValue.q : null)
         {
 
         }

@@ -29,7 +29,6 @@ namespace ASPEDB.UI.ViewModel
         public RelayCommand InsertCommand { get; private set; }
         public RelayCommand ColumnNameKeyPressed { get; set; }
         public List<ComboBoxItem> DataTypes { get; private set; }
-        public List<ComboBoxItem> OperationTypes { get; private set; }
         private int _selectedDataType;
         public int SelectedDataType
         {
@@ -59,7 +58,7 @@ namespace ASPEDB.UI.ViewModel
             }
         }
         public int SelectedOperationType { get; set; }
-        public decimal? _columnName;
+        private decimal? _columnName;
         public decimal? ColumnName
         {
             get { return _columnName; }

@@ -10,10 +10,11 @@ namespace ASPEDB.Utils
         {
             Random r = new Random();
             int s = 0;
-            do
-            {
-                s = r.Next(255);
-            } while (s == 0);
+            //do
+            //{
+            //    s = r.Next(255);
+            //} while (s == 0);
+            s = 2;
             decimal[] c = new decimal[p.p.Length];
             decimal[] d = new decimal[p.p.Length];
             for (int i = 0; i < p.p.Length; i++)
@@ -84,7 +85,7 @@ namespace ASPEDB.Utils
             Query qType = new Query(dbQuery.Type.GenerateQueryFromValue(d));
             Query qNam = new Query(dbQuery.Name.GenerateQueryFromValue(d));
             Query qValue = new Query(dbQuery.Value.GenerateQueryFromValue(d));
-            Query qOptionalValue = new Query(dbQuery.OptionalValue.GenerateQueryFromValue(d));
+            Query qOptionalValue = dbQuery.OptionalValue.HasValue ? new Query(dbQuery.OptionalValue.Value.GenerateQueryFromValue(d)) : null;
             UnEncryptedDBQuery uedbq = new UnEncryptedDBQuery(qType, qNam, dbQuery.Operator, qValue, qOptionalValue);
             return uedbq;
         }

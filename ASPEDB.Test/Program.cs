@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ASPEDB.DTO;
 using ASPEDB.DTO.DB;
 using ASPEDB.EncryptionModule;
+using ASPEDB.Utils;
 
 namespace ASPEDB.Test
 {
@@ -44,16 +45,12 @@ namespace ASPEDB.Test
 
             SecretKey sk = new SecretKey(2, 6, "101010", wds, Permutation, M1, M2, (decimal)Math.Pow(10, -10));
             ASPE aspe = new ASPE(sk);
-            decimal[] p = new decimal[2] { 0, 1 };
-            decimal[] p2 = new decimal[2] { 0, 5 };
-            decimal[] q = new decimal[2] { 0, 3 };
-            Point point = new Point(p);
-            Point point2 = new Point(p2);
-            Query query = new Query(q);
-            Console.Write("point = ");
-            var dbp = new DBPoint(1, 2, 3);
+
+            DBPoint dbp = new DBPoint(1, 2, -3);
             var edbp = aspe.EncryptDBPoint(dbp);
-            var ddbp = aspe.DecryptDBPointToValue(edbp);
+            DBQuery dbq = new DBQuery(1, 2, Operator.Between, -3, 4);
+            EncryptedDBQuery edbq = aspe.EncryptDBQuery(dbq);
+            Console.WriteLine(edbq.DBQueryCoversDBPoint(edbp, sk.epsilon));
             Console.ReadLine();
         }
     }

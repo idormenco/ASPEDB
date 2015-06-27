@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comparer.cs" />
     <Compile Include="DBPointsUtils.cs" />
     <Compile Include="StringUtils.cs" />
     <Compile Include="Printer.cs" />
