@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBOperations.cs" />
+    <Compile Include="DTOWrapper.cs" />
     <Compile Include="IDBOperations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -63,6 +64,10 @@
     <ProjectReference Include="..\ASPEDB.DTO\ASPEDB.DTO.csproj">
       <Project>{57c6b938-c19d-4155-98c6-03723772d5dc}</Project>
       <Name>ASPEDB.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASPEDB.Utils\ASPEDB.Utils.csproj">
+      <Project>{ad101bcf-8a4c-4bab-ab4d-15dc1dc48c92}</Project>
+      <Name>ASPEDB.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

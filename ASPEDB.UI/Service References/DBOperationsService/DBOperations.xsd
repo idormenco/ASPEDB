@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:20938/ASPEDB.DBServiceHost/DBOperations.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ASPEDB.DTO" />
-  <xs:import schemaLocation="http://localhost:20938/ASPEDB.DBServiceHost/DBOperations.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/ASPEDB.DTO.DB" />
+  <xs:import schemaLocation="http://localhost:20938/ASPEDB.DBServiceHost/DBOperations.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ASPEDB.DTO.DB" />
   <xs:element name="Hello">
     <xs:complexType>
       <xs:sequence />
@@ -17,7 +16,7 @@
   <xs:element name="Search">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ASPEDB.DTO" minOccurs="0" name="query" nillable="true" type="q1:EncryptedQuery" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ASPEDB.DTO.DB" minOccurs="0" name="query" nillable="true" type="q1:EncryptedDBQuery" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -31,8 +30,8 @@
   <xs:element name="Update">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/ASPEDB.DTO" minOccurs="0" name="query" nillable="true" type="q3:EncryptedQuery" />
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/ASPEDB.DTO" minOccurs="0" name="newPoint" nillable="true" type="q4:EncryptedPoint" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/ASPEDB.DTO.DB" minOccurs="0" name="query" nillable="true" type="q3:EncryptedDBQuery" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/ASPEDB.DTO.DB" minOccurs="0" name="newPoint" nillable="true" type="q4:EncryptedDBPoint" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -46,7 +45,7 @@
   <xs:element name="Delete">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/ASPEDB.DTO" minOccurs="0" name="query" nillable="true" type="q5:EncryptedQuery" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/ASPEDB.DTO.DB" minOccurs="0" name="query" nillable="true" type="q5:EncryptedDBQuery" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -4,10 +4,14 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using ASPEDB.DTO;
 using ASPEDB.DTO.DB;
 using ASPEDB.EncryptionModule;
+using ASPEDB.Utils;
 using EncryptedDBPoint = ASPEDB.DTO.DB.EncryptedDBPoint;
 
 namespace ASPEDB.UI.ViewModel
@@ -29,10 +33,10 @@ namespace ASPEDB.UI.ViewModel
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        private DBOperationsClient _dboc;
         public RelayCommand InsertCommand { get; private set; }
         public RelayCommand ColumnNameKeyPressed { get; set; }
         public List<ComboBoxItem> DataTypes { get; private set; }
+        public List<string> DataTypesAlias { get; private set; }
         public ASPE ASPE { get; set; }
         private int _selectedDataType;
         public int SelectedDataType
@@ -178,31 +182,62 @@ namespace ASPEDB.UI.ViewModel
                 new decimal[]{0,0,0,0,0,1}, 
                 new decimal[]{0,0,1,0,0,0}
             };
-            Dictionary<int, decimal> wds = new Dictionary<int, decimal> {{4, 8}, {5, 2}, {6, 5}};
+            Dictionary<int, decimal> wds = new Dictionary<int, decimal> { { 4, 8 }, { 5, 2 }, { 6, 5 } };
             var sk = new SecretKey(2, 6, "101010", wds, permutation, M1, M2, (decimal)Math.Pow(10, -10));
             ASPE = new ASPE(sk);
 
             #endregion
 
-            _dboc = new DBOperationsClient();
+            
             DataTypes = new List<ComboBoxItem>(){
                 new ComboBoxItem(1,"Number"),
                 new ComboBoxItem(2,"String"),
                 new ComboBoxItem(3,"Date")
             };
+            DataTypesAlias = new List<string>(){
+                "Num",
+                "Str",
+                "Date"
+            };
             SelectedDataType = 1;
             InsertCommand = new RelayCommand(InsertCommandExecuted, CanInsert);
         }
 
-
+        public object ConvertToNumber(object value)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (char ch in value.ToString())
+            {
+                if (char.IsLetter(ch) && ch >= 'a' && ch <= 'z')
+                {
+                    //In order to have encoded all lower case letters in two digit numbers.'a' in ascii is 97 in my encoding its 10.
+                    sb.Append(((int)ch - 87).ToString());
+                }
+            }
+            if (sb.Length == 0) return null as decimal?;
+            return decimal.Parse(sb.ToString());
+        }
 
         private void InsertCommandExecuted()
         {
-            StringToDecimalConvertor stdc = new StringToDecimalConvertor();
-            decimal? dataType = (decimal?)stdc.ConvertBack(DataTypes[SelectedDataType - 1].Value.ToLower(), null, null, null);
+            decimal? dataType = (decimal?)ConvertToNumber(DataTypesAlias[SelectedDataType - 1].ToLower());
             DBPoint dbp = new DBPoint(dataType.Value, ColumnName.Value, SelectedValue.Value);
+            DBQuery dbq = new DBQuery(dataType.Value, ColumnName.Value, Operator.Equal, SelectedValue.Value, null);
             EncryptedDBPoint edbp = ASPE.EncryptDBPoint(dbp);
-            _dboc.Insert(edbp.EncryptedDBPointToServer());
+            var encryptedDBQuery = ASPE.EncryptDBQuery(dbq);
+            var _dboc = new DBOperationsClient();
+            //var dbOperationResponse = _dboc.Insert(edbp);
+            
+            //if (dbOperationResponse.IsOperationExecuted)
+            //{ MessageBox.Show(dbOperationResponse.Message); }
+            //else
+            //{
+            //    MessageBox.Show(dbOperationResponse.Message, "ERROR!");
+            //}
+            Task<ASPEDB.DTO.DB.EncryptedDBPoint[]> tsk = _dboc.SearchAsync(encryptedDBQuery);
+            tsk.Wait();
+            MessageBox.Show("Done");
+            var a = 0;
         }
 
         private bool CanInsert()

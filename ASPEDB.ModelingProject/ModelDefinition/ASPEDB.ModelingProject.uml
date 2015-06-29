@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel"
+  dslVersion="1.0.0.0"
+  Id="6b8b965a-3bdc-4f1c-a2e6-56c18820329c"
+  name="ASPEDB.ModelingProject" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
+      <profileInstance
+        Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791"
+        name="StandardProfileL2" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="29349502-908c-4fda-9054-c48619c59ed0">
+      <profileInstance
+        Id="532ea607-fb19-44b8-8502-3351b05452be"
+        name="StandardProfileL3" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="32c2376f-98c7-4ad2-bece-7ceef9341981">
+      <profileInstance
+        Id="012ede00-29fc-4a54-8998-cae22f558877"
+        name="CSharpProfile" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="d792fb45-654f-4a19-805f-731a569fa57d">
+      <profileInstance
+        Id="c214f1c4-5567-4e8d-9db0-3f712058bdf4"
+        name="TextTemplateBindings" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="9be48c2f-0b92-49f3-8901-016be099c19c"
+        LastKnownName="ASPEDB"
+        LastKnownLocation="Package_1424.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="6cd2485d-9a06-44d6-ad9a-2fb420e1dbf7"
+        LastKnownName="System"
+        LastKnownLocation="Package3_1424.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="0743b5f0-bcf5-49fc-9f8c-f65f5cd0ce3c"
+        LastKnownName="Package1"
+        LastKnownLocation="Package_1814.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="dee4b669-ccc1-486a-b616-0d582a0e53ec"
+        name="User"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="2470d65d-a374-412b-8113-2c6faba0632b"
+            isDerived="false"
+            sourceEndRoleName="User"
+            targetEndRoleName="Encryption Module"
+            isLeaf="false"
+            isAbstract="false">
+            <subsystemMoniker
+              Id="f2ed1765-dd80-4cf4-af3b-803df4edda5f"
+              LastKnownName="Encryption Module"
+              LastKnownLocation="ASPEDB.ModelingProject.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="837df00c-2c2a-4ddd-b499-118dace63232"
+                  name="User"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="5bed673a-dac8-47df-a1dc-d9a776243bcd"
+                  name="Encryption Module"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="fa4c93f2-f934-4233-a2f3-dd97417e0582"
+        name="UseCase1"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="f2ed1765-dd80-4cf4-af3b-803df4edda5f"
+        name="Encryption Module"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="e9acfe95-df20-42a2-9a4d-e4e5af297620"
+            isDerived="false"
+            sourceEndRoleName="Encryption Module"
+            targetEndRoleName="Web Service"
+            isLeaf="false"
+            isAbstract="false">
+            <subsystemMoniker
+              Id="652109a2-535d-4a25-b0a9-f0eff308e454"
+              LastKnownName="Web Service"
+              LastKnownLocation="ASPEDB.ModelingProject.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="4d83f7bc-10a0-421a-8d13-223568c4a9e4"
+                  name="Encryption Module"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="140b3b0b-8e10-49e5-8d46-b6e8c3c5c882"
+                  name="Web Service"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </subsystem>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="652109a2-535d-4a25-b0a9-f0eff308e454"
+        name="Web Service"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <artifact
+        Id="1432bebb-5891-4355-9f66-104559dc51f2"
+        name="DataBase"
+        isAbstract="false"
+        isLeaf="false">
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="1708e191-8196-428c-8f89-0fdf09532780"
+            name="TextTemplateBindings"
+            profile="TextTemplateBindings">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a497bf4e-271c-4ce9-9fa4-536eeae08945">
+                <propertyInstance
+                  Id="c9bd3a00-efb2-4313-a6b7-6ac41f778ba5"
+                  name="Alias" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="287fe1f4-d2c6-44ef-bf2d-377ed369f16a">
+                <propertyInstance
+                  Id="c682c86b-5c1c-484f-99bf-373d5cbd8eb9"
+                  name="TemplateFilePath" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="471faf02-3f8d-4663-a2cf-e095f2b1d5ce">
+                <propertyInstance
+                  Id="115369f7-a478-4fbd-9652-8220b3aee5f0"
+                  name="ProjectPath" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="0ba4a2f7-8f56-446b-b65f-445cadf70a36">
+                <propertyInstance
+                  Id="5f52ea82-974a-4900-9610-8cf8c56c9c7b"
+                  name="TargetDirectory" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ed8f02e3-0d73-43dd-9de6-1f37050fd594">
+                <propertyInstance
+                  Id="2df9a5b0-5897-481e-afdd-60b810bd1aaf"
+                  name="TargetName" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="161e6a65-94b8-4efd-b618-23037c8245d9">
+                <propertyInstance
+                  Id="7b62c03b-63f8-472b-86b1-1588c94f0e83"
+                  name="Overwrite" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="56dded10-7c25-4d3f-85b5-00ae3f8e0b22">
+                <propertyInstance
+                  Id="abf8f80e-f471-4204-b3ad-ede0d9297269"
+                  name="Parameters" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </artifact>
+    </packageHasNamedElement>
+  </packagedElements>
+  <primitiveType
+    Id="220a3521-e091-4221-bae9-3ef9018e845c"
+    name="Integer"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+    name="Boolean"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+    name="String"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="3ab42e7d-4969-445a-b209-471f5cb8209c"
+    name="UnlimitedNatural"
+    isAbstract="false"
+    isLeaf="false" />
+</modelStoreModel>

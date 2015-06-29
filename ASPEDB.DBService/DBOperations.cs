@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using ASPEDB.DTO;
 using ASPEDB.DTO.DB;
+using ASPEDB.Utils;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace ASPEDB.DBService
@@ -29,17 +33,27 @@ namespace ASPEDB.DBService
         }
 
 
-        public IList<EncryptedDBPoint> Search(EncryptedQuery query)
+        public IList<EncryptedDBPoint> Search(EncryptedDBQuery query)
+        {
+            try
+            {
+                Task<IList<EncryptedDBPoint>> queryDBAsynkTask = QueryDBAsynkTask(query);
+                queryDBAsynkTask.Wait();
+                return queryDBAsynkTask.Result;
+            }
+            catch (Exception ex)
+            {
+                int a =0; 
+            }
+            return null;
+        }
+
+        public bool Update(EncryptedDBQuery query, EncryptedDBPoint newPoint)
         {
             throw new NotImplementedException();
         }
 
-        public bool Update(EncryptedQuery query, EncryptedPoint newPoint)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Delete(EncryptedQuery query)
+        public bool Delete(EncryptedDBQuery query)
         {
             throw new NotImplementedException();
         }
@@ -50,8 +64,8 @@ namespace ASPEDB.DBService
             {
                 MongoClient mc = new MongoClient();
                 var db = mc.GetDatabase("ASPEDB");
-                var collection = db.GetCollection<EncryptedDBPoint>("Points");
-                var ret = collection.InsertOneAsync(encryptedPoint);
+                var collection = db.GetCollection<EncryptedMDBPoint>("Points");
+                var ret = collection.InsertOneAsync(new EncryptedMDBPoint(encryptedPoint));
                 ret.Wait();
             }
             catch (Exception ex)
@@ -59,52 +73,47 @@ namespace ASPEDB.DBService
             return new DBOperationResponse(true, "Insert OK");
         }
 
-        //public async Task<int> CountAsync()
-        //{
+        public async Task<int> CountAllAsync()
+        {
 
-        //    MongoClient mc = new MongoClient();
+            MongoClient mc = new MongoClient();
+            var db = mc.GetDatabase("ASPEDB");
+            var collection = db.GetCollection<EncryptedMDBPoint>("Points");
+            var filter = new BsonDocument();
+            var count = 0;
+            using (var cursor = await collection.FindAsync(filter))
+            {
+                while (await cursor.MoveNextAsync())
+                {
+                    var batch = cursor.Current;
+                    foreach (var document in batch)
+                    {
+                        // process document
+                        count++;
+                    }
+                }
+            }
+            return count;
+        }
 
-        //    var db = mc.GetDatabase("ASPEDB");
-        //    var collection = db.GetCollection<EncryptedDBPoint>("Points");
-        //    var filter = new BsonDocument();
-        //    var count = 0;
-        //    using (var cursor = await collection.FindAsync(filter))
-        //    {
-        //        while (await cursor.MoveNextAsync())
-        //        {
-        //            var batch = cursor.Current;
-        //            foreach (var document in batch)
-        //            {
-        //                // process document
-        //                count++;
-        //            }
-        //        }
-        //    }
-        //    return count;
-        //}
-
-        //public async Task<int> DoSomethingAsync(Encryp)
-        //{
-
-        //    MongoClient mc = new MongoClient();
-
-        //    var db = mc.GetDatabase("ASPEDB");
-        //    var collection = db.GetCollection<EncryptedDBPoint>("Points");
-        //    var filter = new BsonDocument();
-        //    var count = 0;
-        //    using (var cursor = await collection.FindAsync(filter))
-        //    {
-        //        while (await cursor.MoveNextAsync())
-        //        {
-        //            var batch = cursor.Current;
-        //            foreach (var document in batch)
-        //            {
-        //                // process document
-        //                count++;
-        //            }
-        //        }
-        //    }
-        //    return count;
-        //}
+        public async Task<IList<EncryptedDBPoint>> QueryDBAsynkTask(EncryptedDBQuery edbq)
+        {
+            MongoClient mc = new MongoClient();
+            List<EncryptedDBPoint> dbPoints = new List<EncryptedDBPoint>();
+            decimal epsilon = (decimal)Math.Pow(10, -4);
+            var db = mc.GetDatabase("ASPEDB");
+            var collection = db.GetCollection<EncryptedMDBPoint>("Points");
+            var filter = new BsonDocument();
+            var count = 0;
+            using (var cursor = await collection.FindAsync(filter))
+            {
+                while (await cursor.MoveNextAsync())
+                {
+                    var batch = cursor.Current;
+                    dbPoints.AddRange(batch.Where(document => edbq.DBQueryCoversDBPoint(document, epsilon)));
+                }
+            }
+            return dbPoints;
+        }
     }
 }

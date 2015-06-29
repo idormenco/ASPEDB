@@ -10,3 +10,5 @@ D:\Disertatie\ASPEDB.DBService\bin\Debug\MongoDB.Driver.xml
 D:\Disertatie\ASPEDB.DBService\obj\Debug\ASPEDB.DBService.csprojResolveAssemblyReference.cache
 D:\Disertatie\ASPEDB.DBService\obj\Debug\ASPEDB.DBService.dll
 D:\Disertatie\ASPEDB.DBService\obj\Debug\ASPEDB.DBService.pdb
+D:\Disertatie\ASPEDB.DBService\bin\Debug\ASPEDB.Utils.dll
+D:\Disertatie\ASPEDB.DBService\bin\Debug\ASPEDB.Utils.pdb

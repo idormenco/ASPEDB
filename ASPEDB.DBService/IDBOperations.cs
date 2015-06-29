@@ -12,13 +12,13 @@ namespace ASPEDB.DBService
         string Hello();
 
         [OperationContract]
-        IList<EncryptedDBPoint> Search(EncryptedQuery query);
+        IList<EncryptedDBPoint> Search(EncryptedDBQuery query);
 
         [OperationContract]
-        bool Update(EncryptedQuery query, EncryptedPoint newPoint);
+        bool Update(EncryptedDBQuery query, EncryptedDBPoint newPoint);
 
         [OperationContract]
-        bool Delete(EncryptedQuery query);
+        bool Delete(EncryptedDBQuery query);
 
         [OperationContract]
         DBOperationResponse Insert(EncryptedDBPoint dbPoint);

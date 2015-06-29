@@ -12,6 +12,8 @@
     <Window.Resources>
         <l:DateToDecimalConverter x:Key="dateToDecimalConverter" />
         <l:StringToDecimalConvertor x:Key="stringToDecimalConvertor" />
+        <l:NameToDecimalConvertor x:Key="nameToDecimalConvertor" />
+        
     </Window.Resources>
     <Grid Margin="0 10 0 0">
         <Grid.RowDefinitions>
@@ -34,15 +36,15 @@
             </DockPanel>
             <DockPanel Grid.Column="1">
                 <Label FontWeight="Bold">Name:</Label>
-                <TextBox Text="{Binding ColumnName,Converter={StaticResource stringToDecimalConvertor}, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                             CharacterCasing="Lower" MaxLength="10" />
+                <TextBox Text="{Binding ColumnName,Converter={StaticResource nameToDecimalConvertor}, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                             CharacterCasing="Lower" MaxLength="6" />
             </DockPanel>
             <DockPanel Grid.Column="2">
                 <Label FontWeight="Bold">Value:</Label>
                 <DatePicker Visibility="{Binding DatePickerVisibility,Mode=TwoWay}" SelectedDate="{Binding SelectedValue,Converter={StaticResource dateToDecimalConverter},UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBox Visibility="{Binding StringTextboxVisibility,Mode=TwoWay}" 
                          Text="{Binding SelectedValue,Mode=TwoWay,Converter={StaticResource stringToDecimalConvertor},UpdateSourceTrigger=PropertyChanged}" 
-                         Width="102" MaxLength="10"
+                         Width="102" MaxLength="6"
                          CharacterCasing="Lower"/>
                 <xctk:DecimalUpDown Visibility="{Binding NumberTextBoxVisibility,Mode=TwoWay}" 
                                     Value="{Binding SelectedValue,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
