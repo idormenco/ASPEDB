@@ -14,22 +14,7 @@ namespace ASPEDB.DBService
     {
         public string Hello()
         {
-            try
-            {
-                MongoClient mc = new MongoClient();
-                var db = mc.GetDatabase("ASPEDB");
-                EncryptedPoint ep = new EncryptedPoint(65);
-                var collection = db.GetCollection<EncryptedPoint>("Points");
-                for (int i = 0; i < 100; i++)
-                {
-                    var ret = collection.InsertOneAsync(ep);
-                    ret.Wait();
-                }
-            }
-            catch (Exception ex)
-            { return ex.InnerException.ToString(); }
-
-            return "SS";
+            return "Hello from service";
         }
 
 
@@ -43,19 +28,39 @@ namespace ASPEDB.DBService
             }
             catch (Exception ex)
             {
-                int a =0; 
+                throw ex;
             }
             return null;
         }
 
-        public bool Update(EncryptedDBQuery query, EncryptedDBPoint newPoint)
+        public DBOperationResponse Update(EncryptedDBQuery query, EncryptedDBValue newValue)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Task<DBOperationResponse> updateDBAsynkTask = UpdateDBAsynkTask(query, newValue);
+                updateDBAsynkTask.Wait();
+                return updateDBAsynkTask.Result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return null;
         }
 
-        public bool Delete(EncryptedDBQuery query)
+        public DBOperationResponse Delete(EncryptedDBQuery query)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Task<DBOperationResponse> deleteDBAsynkTask = DeleteDBAsynkTask(query);
+                deleteDBAsynkTask.Wait();
+                return deleteDBAsynkTask.Result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return null;
         }
 
         public DBOperationResponse Insert(EncryptedDBPoint encryptedPoint)
@@ -69,13 +74,14 @@ namespace ASPEDB.DBService
                 ret.Wait();
             }
             catch (Exception ex)
-            { return new DBOperationResponse(false, ex.InnerException.ToString()); }
+            {
+                return new DBOperationResponse(false, ex.InnerException.ToString());
+            }
             return new DBOperationResponse(true, "Insert OK");
         }
 
         public async Task<int> CountAllAsync()
         {
-
             MongoClient mc = new MongoClient();
             var db = mc.GetDatabase("ASPEDB");
             var collection = db.GetCollection<EncryptedMDBPoint>("Points");
@@ -100,7 +106,7 @@ namespace ASPEDB.DBService
         {
             MongoClient mc = new MongoClient();
             List<EncryptedDBPoint> dbPoints = new List<EncryptedDBPoint>();
-            decimal epsilon = (decimal)Math.Pow(10, -4);
+            decimal epsilon = (decimal) Math.Pow(10, -4);
             var db = mc.GetDatabase("ASPEDB");
             var collection = db.GetCollection<EncryptedMDBPoint>("Points");
             var filter = new BsonDocument();
@@ -110,10 +116,87 @@ namespace ASPEDB.DBService
                 while (await cursor.MoveNextAsync())
                 {
                     var batch = cursor.Current;
-                    dbPoints.AddRange(batch.Where(document => edbq.DBQueryCoversDBPoint(document, epsilon)));
+                    dbPoints.AddRange(
+                        batch.Where(document => edbq.DBQueryCoversDBPoint(document.DBRecord, epsilon))
+                            .Select(x => x.DBRecord));
                 }
             }
             return dbPoints;
+        }
+
+        public async Task<DBOperationResponse> UpdateDBAsynkTask(EncryptedDBQuery edbq, EncryptedDBValue newValue)
+        {
+            try
+            {
+                MongoClient mc = new MongoClient();
+                List<EncryptedMDBPoint> dbPoints = new List<EncryptedMDBPoint>();
+                decimal epsilon = (decimal) Math.Pow(10, -4);
+                var db = mc.GetDatabase("ASPEDB");
+                var collection = db.GetCollection<EncryptedMDBPoint>("Points");
+                var filter = new BsonDocument();
+                using (var cursor = await collection.FindAsync(filter))
+                {
+                    while (await cursor.MoveNextAsync())
+                    {
+                        var batch = cursor.Current;
+                        dbPoints.AddRange(batch.Where(document => edbq.DBQueryCoversDBPoint(document.DBRecord, epsilon)));
+                    }
+                }
+                if (dbPoints.Count == 0)
+                {
+                    return new DBOperationResponse(true, "No points covered by query,no update");
+                }
+                else
+                {
+                    foreach (var toUp in dbPoints)
+                    {
+                        toUp.DBRecord.Value = newValue;
+                        await collection.ReplaceOneAsync(x => x._id == toUp._id, toUp);
+                    }
+                    return new DBOperationResponse(true, string.Format("{0} points updated", dbPoints.Count));
+                }
+            }
+            catch (Exception ex)
+            {
+                return new DBOperationResponse(false, ex.InnerException.ToString());
+            }
+        }
+
+        public async Task<DBOperationResponse> DeleteDBAsynkTask(EncryptedDBQuery edbq)
+        {
+            try
+            {
+                MongoClient mc = new MongoClient();
+                List<EncryptedMDBPoint> dbPoints = new List<EncryptedMDBPoint>();
+                decimal epsilon = (decimal)Math.Pow(10, -4);
+                var db = mc.GetDatabase("ASPEDB");
+                var collection = db.GetCollection<EncryptedMDBPoint>("Points");
+                var filter = new BsonDocument();
+                using (var cursor = await collection.FindAsync(filter))
+                {
+                    while (await cursor.MoveNextAsync())
+                    {
+                        var batch = cursor.Current;
+                        dbPoints.AddRange(batch.Where(document => edbq.DBQueryCoversDBPoint(document.DBRecord, epsilon)));
+                    }
+                }
+                if (dbPoints.Count == 0)
+                {
+                    return new DBOperationResponse(true, "No points covered by query,no delete");
+                }
+                else
+                {
+                    foreach (var toUp in dbPoints)
+                    {
+                        await collection.DeleteOneAsync(x => x._id == toUp._id);
+                    }
+                    return new DBOperationResponse(true, string.Format("{0} points deleted", dbPoints.Count));
+                }
+            }
+            catch (Exception ex)
+            {
+                return new DBOperationResponse(false, ex.InnerException.ToString());
+            }
         }
     }
 }

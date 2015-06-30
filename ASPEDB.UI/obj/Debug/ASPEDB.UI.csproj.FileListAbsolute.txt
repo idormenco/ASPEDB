@@ -50,3 +50,5 @@ D:\Disertatie\ASPEDB.UI\obj\Debug\ASPEDB.UI.exe
 D:\Disertatie\ASPEDB.UI\obj\Debug\ASPEDB.UI.pdb
 D:\Disertatie\ASPEDB.UI\bin\Debug\ASPEDB.EncryptionModule.dll
 D:\Disertatie\ASPEDB.UI\bin\Debug\ASPEDB.EncryptionModule.pdb
+D:\Disertatie\ASPEDB.UI\obj\Debug\ModalWindow.g.cs
+D:\Disertatie\ASPEDB.UI\obj\Debug\ModalWindow.baml

@@ -1,0 +1,20 @@
+﻿<Window x:Class="ASPEDB.UI.ModalWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Result Window"
+        WindowStartupLocation="CenterScreen"
+        SizeToContent="WidthAndHeight"
+        Icon="logo.png"
+        >
+
+    <Grid>
+        <DataGrid ItemsSource="{Binding Points}" AutoGenerateColumns="False" CanUserReorderColumns="False" CanUserResizeColumns="False" 
+          CanUserResizeRows="False" CanUserSortColumns="False" CanUserAddRows="False" CanUserDeleteRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="100" Header="Type" Binding="{Binding Type}" />
+                <DataGridTextColumn Width="100" Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Width="100" Header="Value" Binding="{Binding Value}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

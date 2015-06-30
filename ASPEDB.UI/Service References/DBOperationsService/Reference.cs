@@ -28,16 +28,16 @@ namespace ASPEDB.UI.DBOperationsService {
         System.Threading.Tasks.Task<ASPEDB.DTO.DB.EncryptedDBPoint[]> SearchAsync(ASPEDB.DTO.DB.EncryptedDBQuery query);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBOperations/Update", ReplyAction="http://tempuri.org/IDBOperations/UpdateResponse")]
-        bool Update(ASPEDB.DTO.DB.EncryptedDBQuery query, ASPEDB.DTO.DB.EncryptedDBPoint newPoint);
+        ASPEDB.DTO.DB.DBOperationResponse Update(ASPEDB.DTO.DB.EncryptedDBQuery query, ASPEDB.DTO.DB.EncryptedDBValue newValue);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBOperations/Update", ReplyAction="http://tempuri.org/IDBOperations/UpdateResponse")]
-        System.Threading.Tasks.Task<bool> UpdateAsync(ASPEDB.DTO.DB.EncryptedDBQuery query, ASPEDB.DTO.DB.EncryptedDBPoint newPoint);
+        System.Threading.Tasks.Task<ASPEDB.DTO.DB.DBOperationResponse> UpdateAsync(ASPEDB.DTO.DB.EncryptedDBQuery query, ASPEDB.DTO.DB.EncryptedDBValue newValue);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBOperations/Delete", ReplyAction="http://tempuri.org/IDBOperations/DeleteResponse")]
-        bool Delete(ASPEDB.DTO.DB.EncryptedDBQuery query);
+        ASPEDB.DTO.DB.DBOperationResponse Delete(ASPEDB.DTO.DB.EncryptedDBQuery query);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBOperations/Delete", ReplyAction="http://tempuri.org/IDBOperations/DeleteResponse")]
-        System.Threading.Tasks.Task<bool> DeleteAsync(ASPEDB.DTO.DB.EncryptedDBQuery query);
+        System.Threading.Tasks.Task<ASPEDB.DTO.DB.DBOperationResponse> DeleteAsync(ASPEDB.DTO.DB.EncryptedDBQuery query);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBOperations/Insert", ReplyAction="http://tempuri.org/IDBOperations/InsertResponse")]
         ASPEDB.DTO.DB.DBOperationResponse Insert(ASPEDB.DTO.DB.EncryptedDBPoint dbPoint);
@@ -89,19 +89,19 @@ namespace ASPEDB.UI.DBOperationsService {
             return base.Channel.SearchAsync(query);
         }
         
-        public bool Update(ASPEDB.DTO.DB.EncryptedDBQuery query, ASPEDB.DTO.DB.EncryptedDBPoint newPoint) {
-            return base.Channel.Update(query, newPoint);
+        public ASPEDB.DTO.DB.DBOperationResponse Update(ASPEDB.DTO.DB.EncryptedDBQuery query, ASPEDB.DTO.DB.EncryptedDBValue newValue) {
+            return base.Channel.Update(query, newValue);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdateAsync(ASPEDB.DTO.DB.EncryptedDBQuery query, ASPEDB.DTO.DB.EncryptedDBPoint newPoint) {
-            return base.Channel.UpdateAsync(query, newPoint);
+        public System.Threading.Tasks.Task<ASPEDB.DTO.DB.DBOperationResponse> UpdateAsync(ASPEDB.DTO.DB.EncryptedDBQuery query, ASPEDB.DTO.DB.EncryptedDBValue newValue) {
+            return base.Channel.UpdateAsync(query, newValue);
         }
         
-        public bool Delete(ASPEDB.DTO.DB.EncryptedDBQuery query) {
+        public ASPEDB.DTO.DB.DBOperationResponse Delete(ASPEDB.DTO.DB.EncryptedDBQuery query) {
             return base.Channel.Delete(query);
         }
         
-        public System.Threading.Tasks.Task<bool> DeleteAsync(ASPEDB.DTO.DB.EncryptedDBQuery query) {
+        public System.Threading.Tasks.Task<ASPEDB.DTO.DB.DBOperationResponse> DeleteAsync(ASPEDB.DTO.DB.EncryptedDBQuery query) {
             return base.Channel.DeleteAsync(query);
         }
         

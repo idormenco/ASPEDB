@@ -52,7 +52,7 @@ namespace ASPEDB.Utils
         public static bool QueryCovers(this EncryptedQuery eq, EncryptedDBValue ep, Operator op, decimal epsilon)
         {
             decimal dis = Dis(ep.C, ep.D, eq);
-            decimal apDis = Math.Abs(dis - Math.Round(dis)) <= epsilon ? 0 : dis;
+            decimal apDis = Math.Abs(dis) <= epsilon ? 0 : dis;
             switch (op)
             {
                 case Operator.Equal:

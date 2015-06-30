@@ -14,16 +14,23 @@ namespace ASPEDB.UI
         public object Convert(object value, Type targetType,
             object parameter, CultureInfo culture)
         {
-            StringBuilder sb = new StringBuilder();
-            if (value == null) return string.Empty;
-            string number = value.ToString();
-            var cleanNumbers = number.SplitByLength(2).Where(x => x != "00");
-            foreach (var nr in cleanNumbers)
+            try
             {
-                //In order to recover initial text. 'a' in ascii is 97 in my encoding its 10.
-                sb.Append((char)(Byte.Parse(nr) + 87));
+                StringBuilder sb = new StringBuilder();
+                if (value == null) return string.Empty;
+                string number = value.ToString();
+                var cleanNumbers = number.SplitByLength(2).Where(x => x != "00");
+                foreach (var nr in cleanNumbers)
+                {
+                    //In order to recover initial text. 'a' in ascii is 97 in my encoding its 10.
+                    sb.Append((char) (Byte.Parse(nr) + 87));
+                }
+                return sb.ToString();
             }
-            return sb.ToString();
+            catch (Exception)
+            {
+                return string.Empty;
+            }
         }
 
         public object ConvertBack(object value, Type targetType,
@@ -82,13 +89,16 @@ namespace ASPEDB.UI
         public object Convert(object value, Type targetType,
             object parameter, CultureInfo culture)
         {
-            return null;
+            if (value == null) return null;
+            System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+            dtDateTime = dtDateTime.AddSeconds((double)value).ToLocalTime();
+            return dtDateTime;
         }
 
         public object ConvertBack(object value, Type targetType,
             object parameter, CultureInfo culture)
         {
-            return null;
+            return ((DateTime)value - new DateTime(1970, 1, 1).ToLocalTime()).TotalSeconds;
         }
     }
 }

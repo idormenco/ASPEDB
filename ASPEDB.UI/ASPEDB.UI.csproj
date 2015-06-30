@@ -100,14 +100,29 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Convertors.cs" />
+    <Compile Include="Design\DesignDataService.cs" />
+    <Compile Include="Helpers\OpenWindowMessage.cs" />
+    <Compile Include="Helpers\WindowType.cs" />
+    <Compile Include="ModalWindow.xaml.cs">
+      <DependentUpon>ModalWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\ComboBoxItem.cs" />
+    <Compile Include="Model\DataItem.cs" />
+    <Compile Include="Model\DataService.cs" />
+    <Compile Include="Model\DisplayDBPoint.cs" />
+    <Compile Include="Model\IDataService.cs" />
     <Compile Include="Service References\DBOperationsService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\ModalWindowViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Page Include="ModalWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -196,6 +211,9 @@
       <Project>{ad101bcf-8a4c-4bab-ab4d-15dc1dc48c92}</Project>
       <Name>ASPEDB.Utils</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

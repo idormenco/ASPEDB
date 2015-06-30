@@ -31,42 +31,42 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/ASPEDB.DTO.DB" minOccurs="0" name="query" nillable="true" type="q3:EncryptedDBQuery" />
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/ASPEDB.DTO.DB" minOccurs="0" name="newPoint" nillable="true" type="q4:EncryptedDBPoint" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/ASPEDB.DTO.DB" minOccurs="0" name="newValue" nillable="true" type="q4:EncryptedDBValue" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="UpdateResult" type="xs:boolean" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/ASPEDB.DTO.DB" minOccurs="0" name="UpdateResult" nillable="true" type="q5:DBOperationResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Delete">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/ASPEDB.DTO.DB" minOccurs="0" name="query" nillable="true" type="q5:EncryptedDBQuery" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/ASPEDB.DTO.DB" minOccurs="0" name="query" nillable="true" type="q6:EncryptedDBQuery" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="DeleteResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="DeleteResult" type="xs:boolean" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/ASPEDB.DTO.DB" minOccurs="0" name="DeleteResult" nillable="true" type="q7:DBOperationResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Insert">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/ASPEDB.DTO.DB" minOccurs="0" name="dbPoint" nillable="true" type="q6:EncryptedDBPoint" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/ASPEDB.DTO.DB" minOccurs="0" name="dbPoint" nillable="true" type="q8:EncryptedDBPoint" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="InsertResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/ASPEDB.DTO.DB" minOccurs="0" name="InsertResult" nillable="true" type="q7:DBOperationResponse" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/ASPEDB.DTO.DB" minOccurs="0" name="InsertResult" nillable="true" type="q9:DBOperationResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

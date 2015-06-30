@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using ASPEDB.UI.Helpers;
+using ASPEDB.UI.ViewModel;
+using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace ASPEDB.UI
 {
@@ -22,6 +14,24 @@ namespace ASPEDB.UI
         public MainWindow()
         {
             InitializeComponent();
+            Closing += (s, e) => ViewModelLocator.Cleanup();
+            Messenger.Default.Register<OpenWindowMessage>(
+              this,
+              message =>
+              {
+                  if (message.Type == WindowType.kModal)
+                  {
+                      var modalWindowVM = SimpleIoc.Default.GetInstance<ModalWindowViewModel>();
+                      modalWindowVM.Points = message.Argument;
+                      var modalWindow = new ModalWindow()
+                      {
+                          DataContext = modalWindowVM
+                      };
+                      var result = modalWindow.ShowDialog() ?? false;
+                      Messenger.Default.Send(result ? "Accepted" : "Rejected");
+                  }
+                  
+              });
         }
     }
 }

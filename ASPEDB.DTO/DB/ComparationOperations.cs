@@ -5,10 +5,10 @@ namespace ASPEDB.DTO.DB
 {
     [Serializable]
     [DataContract]
-    public enum Operator
+    public enum Operator:int
     {
         [EnumMember]
-        NotEqual,       // !=
+        NotEqual=1,       // !=
         [EnumMember]
         Less,           // <
         [EnumMember]

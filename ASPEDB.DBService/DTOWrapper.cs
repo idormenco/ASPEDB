@@ -8,16 +8,14 @@ using MongoDB.Bson;
 
 namespace ASPEDB.DBService
 {
-    class EncryptedMDBPoint:EncryptedDBPoint
+    class EncryptedMDBPoint
     {
-        public ObjectId _id { get; set; }
-        public EncryptedMDBPoint(EncryptedDBValue type, EncryptedDBValue name, EncryptedDBValue value) : base(type, name, value)
+        public EncryptedMDBPoint(EncryptedDBPoint encryptedPoint)
         {
+            DBRecord = encryptedPoint;
         }
 
-        public EncryptedMDBPoint(EncryptedDBPoint edbp)
-            : base(edbp)
-        {
-        }
+        public ObjectId _id { get; set; }
+        public EncryptedDBPoint DBRecord { get; set; } 
     }
 }
