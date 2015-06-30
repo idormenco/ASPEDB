@@ -663,7 +663,22 @@ namespace ASPEDB.UI.ViewModel
 
         private void DeleteCommandExecuted()
         {
-            MessageBox.Show("delete");
+            var _dboc = new DBOperationsClient();
+            decimal? dataType = (decimal?)ConvertToNumber(DataTypesAlias[SelectedDataDeleteType - 1].ToLower());
+            DBQuery dbq = new DBQuery(dataType.Value, DeleteColumnName.Value, (Operator)SelectedOperatorDelete,
+                SelectedDeleteValue.Value, SelectedDeleteOptionalValue);
+            var encryptedDBQuery = ASPE.EncryptDBQuery(dbq);
+
+            Task<ASPEDB.DTO.DB.DBOperationResponse> tsk = _dboc.DeleteAsync(encryptedDBQuery);
+            tsk.Wait();
+            if (tsk.Result.IsOperationExecuted)
+            {
+                MessageBox.Show(tsk.Result.Message);
+            }
+            else
+            {
+                MessageBox.Show(tsk.Result.Message, "ERROR!");
+            }
         }
 
         private bool CanUpdate()
@@ -694,7 +709,22 @@ namespace ASPEDB.UI.ViewModel
 
         private void UpdateCommandExecuted()
         {
-            MessageBox.Show("Update");
+            var _dboc = new DBOperationsClient();
+            decimal? dataType = (decimal?)ConvertToNumber(DataTypesAlias[SelectedDataUpdateType- 1].ToLower());
+            DBQuery dbq = new DBQuery(dataType.Value, UpdateColumnName.Value, (Operator)SelectedOperatorUpdate,
+                SelectedQueryUpdateValue.Value, SelectedQueryUOptionalValue);
+            var encryptedDBQuery = ASPE.EncryptDBQuery(dbq);
+            var encryptedDBValue = ASPE.EncryptDBValue(DBPointsUtils.GenerateUnEncryptedDBValue(SelectedUpdateValue.Value,ASPE.sk.d));
+            Task<ASPEDB.DTO.DB.DBOperationResponse> tsk = _dboc.UpdateAsync(encryptedDBQuery,encryptedDBValue);
+            tsk.Wait();
+            if (tsk.Result.IsOperationExecuted)
+            {
+                MessageBox.Show(tsk.Result.Message);
+            }
+            else
+            {
+                MessageBox.Show(tsk.Result.Message, "ERROR!");
+            }
         }
 
         public bool IsOpened
@@ -734,9 +764,11 @@ namespace ASPEDB.UI.ViewModel
                     switch (ddbp.Type)
                     {
                         case "num":
+                            ddbp.Type = "Number";
                             ddbp.Value = dbPoint.Value.ToString();
                             break;
                         case "str":
+                            ddbp.Type = "String";
                             StringToDecimalConvertor s = new StringToDecimalConvertor();
                             ddbp.Value = (string) s.Convert(dbPoint.Value, null, null, null);
                             break;

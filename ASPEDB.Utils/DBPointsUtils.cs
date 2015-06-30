@@ -10,11 +10,11 @@ namespace ASPEDB.Utils
         {
             Random r = new Random();
             int s = 0;
-            //do
-            //{
-            //    s = r.Next(255);
-            //} while (s == 0);
-            s = 2;
+            do
+            {
+                s = r.Next(255);
+            } while (s == 0);
+            
             decimal[] c = new decimal[p.p.Length];
             decimal[] d = new decimal[p.p.Length];
             for (int i = 0; i < p.p.Length; i++)
